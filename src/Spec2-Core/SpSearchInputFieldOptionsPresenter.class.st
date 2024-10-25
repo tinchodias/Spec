@@ -98,13 +98,31 @@ SpSearchInputFieldOptionsPresenter >> regexpOptionButton [
 ]
 
 { #category : 'updating' }
+SpSearchInputFieldOptionsPresenter >> safelyRegexParse: regexString ignoringCaseSearch: item [
+	"Private - Avoid raising exceptions while typing regular expressions. If there is an error, we return <false> meaning that the search did not produced any results. Example: 'test[a-c] (Do not paste it, type it) "
+
+	^ [ regexString asRegexIgnoringCase search: item ]
+		   on: RegexSyntaxError
+		   do: [ :ex | ex return: false ]
+]
+
+{ #category : 'updating' }
+SpSearchInputFieldOptionsPresenter >> safelyRegexParse: regexString search: item [
+	"Private - Avoid raising exceptions while typing regular expressions. If there is an error, we return <false> meaning that the search did not produced any results. Example: 'test[a-c] (Do not paste it, type it) "
+
+	^ [ regexString asRegex search: item ]
+		   on: RegexSyntaxError
+		   do: [ :ex | ex return: false ]
+]
+
+{ #category : 'updating' }
 SpSearchInputFieldOptionsPresenter >> selectBlock [
 	"Answer a <BlockClosure> with the matching strategy depending of the active searching options in the receiver"
 	
 	(regexpOptionButton isActive and: [ caseCheckBox isActive ])
-		ifTrue: [ ^ [ : item : regex | regex asRegex  search: item ] ].
+		ifTrue: [ ^ [ : item : regexString | self safelyRegexParse: regexString search: item ] ].
 	(regexpOptionButton isActive and: [ caseCheckBox isActive not ])
-		ifTrue: [ ^ [ : item : regex | regex asRegexIgnoringCase search: item ] ].
+		ifTrue: [ ^ [ : item : regexString | self safelyRegexParse: regexString ignoringCaseSearch: item ] ].
 
 	(exactOptionButton isActive and: [ caseCheckBox isActive])
 		ifTrue: [ ^ [ : item : pattern | item = pattern ]  ].
