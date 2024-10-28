@@ -41,6 +41,18 @@ SpNotebookPresenter >> addPageTitle: aString provider: aBlock [
 	^ self addPage: (SpNotebookPage title: aString provider: aBlock)
 ]
 
+{ #category : 'testing' }
+SpNotebookPresenter >> hasPageNamed: aTitle [
+
+	^ self pages anySatisfy: [ : page | 	page title = aTitle ]
+]
+
+{ #category : 'testing' }
+SpNotebookPresenter >> hasPages [
+
+	^ self pages isNotEmpty
+]
+
 { #category : 'initialization' }
 SpNotebookPresenter >> initialize [
 
@@ -53,6 +65,13 @@ SpNotebookPresenter >> initialize [
 SpNotebookPresenter >> pageAt: index [
 
 	^ self pages at: index
+]
+
+{ #category : 'api' }
+SpNotebookPresenter >> pageNamed: aTitle [
+	"Answer the receiver's <SpNotebookPage> with aTitle as name. Raise a <NotFound> exception if not present"
+
+	^ self pages detect: [ : page | page title = aTitle ]
 ]
 
 { #category : 'private' }
