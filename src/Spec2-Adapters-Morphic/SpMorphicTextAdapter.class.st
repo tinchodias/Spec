@@ -17,6 +17,12 @@ SpMorphicTextAdapter >> accept: aString notifying: aNotifyier [
 		notifying: aNotifyier
 ]
 
+{ #category : 'widget API' }
+SpMorphicTextAdapter >> addExtraActionsTo: actionGroup [
+		
+	"override to add extra actions between user defined and edition"
+]
+
 { #category : 'initialization' }
 SpMorphicTextAdapter >> addFocusRotationKeyBindings [
 	"Text areas needs to be able to process tab. Cancel the binding."
@@ -91,9 +97,10 @@ SpMorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [
 	
 	self presenter internalActions ifNotNil: [ :group |
 		actionGroup add: group beRoot ].
+	self addExtraActionsTo: actionGroup.
 	self presenter actions ifNotNil: [ :group |
 		actionGroup add: group beRoot ].
-	self presenter hasEditionContextMenu ifTrue: [ 
+	self presenter hasEditionContextMenu ifTrue: [
 		actionGroup add: self presenter editionCommandsGroup beRoot ].
 
 	menuPresenter := self presenter newMenu.

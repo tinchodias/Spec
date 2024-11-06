@@ -434,7 +434,7 @@ SpCodePresenter >> hasEditionContextMenu [
 	"Answer if edition context menu is active. 
 	 Edition context menu is available by default, but it can be disabled by calling `SpTextPresenter>>#withoutEditionContextMenu` or `SpCodePresenter>>#overridingContextMenu`"
 
-	^ super hasEditionContextMenu and: [ overrideContextMenu not ]
+	^ super hasEditionContextMenu and: [ self isOverrideContextMenu not ]
 ]
 
 { #category : 'testing' }
@@ -537,6 +537,12 @@ SpCodePresenter >> interactionModel: anInteractionModel [
 
 	anInteractionModel owner: self.
 	self basicInteractionModel: anInteractionModel
+]
+
+{ #category : 'private - testing' }
+SpCodePresenter >> isOverrideContextMenu [
+
+	^ overrideContextMenu
 ]
 
 { #category : 'private - bindings' }
