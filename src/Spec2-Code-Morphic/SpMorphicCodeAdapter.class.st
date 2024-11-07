@@ -6,6 +6,14 @@ Class {
 }
 
 { #category : 'widget API' }
+SpMorphicCodeAdapter >> addExtraActionsTo: group [
+
+	self presenter isOverrideContextMenu ifTrue: [ ^ self ].
+	
+	group add: self presenter rootCommandsGroup beRoot
+]
+
+{ #category : 'widget API' }
 SpMorphicCodeAdapter >> behavior [
 
 	^ self presenter behavior

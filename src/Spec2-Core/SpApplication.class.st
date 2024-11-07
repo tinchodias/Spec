@@ -36,7 +36,7 @@ Example:
 ```
 MyApplication>>start
 
-   (self new: MyMainPresenter) openWithSpec
+   (self new: MyMainPresenter) open
 ```
 
 

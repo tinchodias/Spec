@@ -23,5 +23,5 @@ SpBrowseInstancesCommand class >> shortName [
 { #category : 'executing' }
 SpBrowseInstancesCommand >> execute [
 
-	self target instanceSide inspectAllInstances
+	self target instanceSide allInstances inspect
 ]

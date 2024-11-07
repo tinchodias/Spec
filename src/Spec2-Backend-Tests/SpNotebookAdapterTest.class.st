@@ -19,6 +19,18 @@ SpNotebookAdapterTest >> initializeTestedInstance [
 ]
 
 { #category : 'tests' }
+SpNotebookAdapterTest >> testAccessPage [
+
+	| newPage |
+	
+	newPage := SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ].
+	presenter addPage: newPage.
+	self assert: (presenter pageNamed: 'Mock3') equals: newPage.
+	presenter removeAll.
+	self should: [ presenter pageNamed: 'Mock3' ] raise: NotFound.
+]
+
+{ #category : 'tests' }
 SpNotebookAdapterTest >> testAddPage [
 	self assert: self adapter numberOfTabs equals: 2.
 	presenter addPage: (SpNotebookPage title: 'Mock3' provider: [ SpLabelPresenter new ]).
@@ -40,6 +52,14 @@ SpNotebookAdapterTest >> testClickOnPage [
 
 	self adapter clickTab: 2.
 	self assert: self adapter selectedPageName equals: 'Mock2'
+]
+
+{ #category : 'tests' }
+SpNotebookAdapterTest >> testHasPages [
+
+	self assert: presenter hasPages.
+	presenter removeAll.
+	self deny: presenter hasPages.
 ]
 
 { #category : 'tests' }
