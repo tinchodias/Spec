@@ -31,9 +31,7 @@ SpCodePrintItCommand class >> defaultName [
 { #category : 'default' }
 SpCodePrintItCommand class >> defaultShortcutKey [
 
-	^ $p command mac
-		| $p control win
-		| $p control unix
+	^ $p actionModifier
 ]
 
 { #category : 'execution' }

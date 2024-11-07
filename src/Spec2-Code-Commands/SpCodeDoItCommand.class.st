@@ -31,9 +31,7 @@ SpCodeDoItCommand class >> defaultName [
 { #category : 'default' }
 SpCodeDoItCommand class >> defaultShortcutKey [
 
-	^ $d command mac 
-		| $d control win 
-		| $d control unix
+	^ $d actionModifier
 ]
 
 { #category : 'accessing' }

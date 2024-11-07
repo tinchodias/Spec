@@ -31,9 +31,7 @@ SpCodeInspectItCommand class >> defaultName [
 { #category : 'default' }
 SpCodeInspectItCommand class >> defaultShortcutKey [
 
-	^ $i command mac 
-		| $i control win
-		| $i control unix
+	^ $i actionModifier
 ]
 
 { #category : 'documentation' }
