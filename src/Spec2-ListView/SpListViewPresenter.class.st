@@ -143,8 +143,10 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 	 It shows also the fact you can put any presenter inside, giving a huge power 
 	 to your lists."
 
+	| application |
+	application := SpApplication new useBackend: #Gtk.
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: application;
 		items: self environment allClasses;
 		setup: [ :aPresenter |
 			| presenter morph |
@@ -157,7 +159,7 @@ SpListViewPresenter class >> exampleWithIconsAndMorph [
 						morph: ((morph := SimpleButtonMorph new)
 							color: Color blue;
 							target: [ 
-								self inform: 'Clicked: ', morph label ];
+								application inform: 'Clicked: ', morph label ];
 							actionSelector: #value;
 							yourself);
 						yourself);
