@@ -13,6 +13,14 @@ SpMorphicCodeAdapter >> addExtraActionsTo: group [
 	group add: self presenter rootCommandsGroup beRoot
 ]
 
+{ #category : 'initialization' }
+SpMorphicCodeAdapter >> addKeyBindingsTo: aWidget [
+
+	super addKeyBindingsTo: aWidget.
+	self presenter isOverrideContextMenu 
+		ifFalse: [ self addKeyBindingsFromGroup: self presenter rootCommandsGroup ]
+]
+
 { #category : 'widget API' }
 SpMorphicCodeAdapter >> behavior [
 
