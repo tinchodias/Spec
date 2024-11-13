@@ -15,6 +15,11 @@ SpBrowsePointersToCommand class >> defaultDescription [
 ]
 
 { #category : 'default' }
+SpBrowsePointersToCommand class >> defaultIconName [
+	^ #pointersTo 
+]
+
+{ #category : 'default' }
 SpBrowsePointersToCommand class >> shortName [
 
 	^ 'pointers to'
