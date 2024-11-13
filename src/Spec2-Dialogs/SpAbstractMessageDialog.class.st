@@ -37,7 +37,7 @@ SpAbstractMessageDialog >> addButtonsTo: aDialogWindowPresenter [
 { #category : 'private' }
 SpAbstractMessageDialog >> adjustExtentToLabelHeight: anExtent [
 
-	^ anExtent x @ (anExtent y - self singleLineDefaultHeight + (self calculateLabelHeightForTextWithoutMargin: label text forExtent: anExtent ))
+	^ anExtent x @ (anExtent y - self singleLineDefaultHeight + (self calculateLabelHeightForTextWithoutMargin: self getLabel forExtent: anExtent ))
 ]
 
 { #category : 'private' }
@@ -92,6 +92,12 @@ SpAbstractMessageDialog >> extent: aPoint [
 	initialExtent := aPoint
 ]
 
+{ #category : 'private' }
+SpAbstractMessageDialog >> getLabel [
+
+	^ label text
+]
+
 { #category : 'initialization' }
 SpAbstractMessageDialog >> initialize [
 
@@ -133,7 +139,7 @@ SpAbstractMessageDialog >> initializeWindowExtent: aDialogWindowPresenter [
 { #category : 'api' }
 SpAbstractMessageDialog >> label: aString [
 
-	label text: aString asText trim.
+	self setLabel: aString asText trim.
 	aString ifNotNil: [ label show ]
 ]
 
@@ -152,6 +158,12 @@ SpAbstractMessageDialog >> newDialogLabel [
 		addStyle: 'textDisabled';
 		propagateNaturalHeight: true;
 		yourself.
+]
+
+{ #category : 'private' }
+SpAbstractMessageDialog >> setLabel: aString [
+
+	label text: aString
 ]
 
 { #category : 'private' }
