@@ -83,12 +83,6 @@ SpAbstractAdapter >> adapterWasBuilt [
 	"hook to add after-build opeations (for example, initial status, etc.)"
 ]
 
-{ #category : 'protocol' }
-SpAbstractAdapter >> add: aWidget [
-
-	self subclassResponsibility
-]
-
 { #category : 'initialization' }
 SpAbstractAdapter >> addEventsTo: aWidget [
 	
@@ -109,24 +103,6 @@ SpAbstractAdapter >> buildWidget [
 SpAbstractAdapter >> eventHandlerReceiver: aWidget [
 
 	^ aWidget
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> hRigid [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> hShrinkWrap [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> hSpaceFill [
-
-	self subclassResponsibility
 ]
 
 { #category : 'testing' }
@@ -176,12 +152,6 @@ SpAbstractAdapter >> presenter [
 	^ model
 ]
 
-{ #category : 'protocol' }
-SpAbstractAdapter >> removeSubWidgets [
-
-	self subclassResponsibility
-]
-
 { #category : 'private' }
 SpAbstractAdapter >> replaceLayoutWith: aLayout [
 	
@@ -227,36 +197,6 @@ SpAbstractAdapter >> update: aSymbol [
 SpAbstractAdapter >> update: aSymbol with: anArray [
 
 	self perform: aSymbol withArguments: anArray
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> useProportionalLayout [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> vRigid [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> vShrinkWrap [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> vSpaceFill [
-
-	self subclassResponsibility
-]
-
-{ #category : 'protocol' }
-SpAbstractAdapter >> when: anAnnouncement do: aBlock [
-
-	self subclassResponsibility
 ]
 
 { #category : 'accessing' }
