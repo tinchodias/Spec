@@ -364,6 +364,17 @@ SpAbstractTreePresenter >> searchValueOf: item [
 	^ item asString
 ]
 
+{ #category : 'private' }
+SpAbstractTreePresenter >> selectFirst: aString [ 
+	
+	self isSearchEnabled ifFalse: [ ^ self ].
+	self traverseTreeDo: [ :anItem :aPath |
+		(self performSearch: anItem matching: aString)
+			ifTrue: [ 
+				self selectPath: aPath.
+				^ self ] ]
+]
+
 { #category : 'api - selection' }
 SpAbstractTreePresenter >> selectItem: anItem [
 	"Select `anItem` if it is included in model list.
@@ -474,6 +485,28 @@ SpAbstractTreePresenter >> selectionMode: aMode [
 	selectionMode ifNotNil: [ 
 		selectionMode transferSubscriptionsTo: aMode ].
 	selectionMode := aMode
+]
+
+{ #category : 'private' }
+SpAbstractTreePresenter >> traverseTree: aCollection path: aPath do: aBlock [
+
+	aCollection withIndexDo: [ :anItem :index |
+		| itemPath |
+		itemPath := aPath copyWith: index.
+		aBlock value: anItem value: itemPath.
+		self 
+			traverseTree: (self childrenFor: anItem) 
+			path: itemPath 
+			do: aBlock ]
+]
+
+{ #category : 'private' }
+SpAbstractTreePresenter >> traverseTreeDo: aBlock [
+
+	self 
+		traverseTree: self roots 
+		path: #() 
+		do: aBlock
 ]
 
 { #category : 'api - selection' }

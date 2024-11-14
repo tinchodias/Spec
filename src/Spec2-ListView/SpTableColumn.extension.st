@@ -6,6 +6,7 @@ SpTableColumn >> asColumnViewColumn [
 	^ SpColumnViewColumn new
 		title: self title;
 		expand: (self width isNil and: [ self isExpandable ]);
+		sortFunction: self sortFunction;
 		width: self width;
 		setup: [ :aPresenter | 
 			SpEasyColumnSetupBuilder new

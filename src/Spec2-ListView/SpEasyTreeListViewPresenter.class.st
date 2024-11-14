@@ -32,7 +32,7 @@ SpEasyTreeListViewPresenter >> defaultLayout [
 			add: headerPanel expand: false;
 			add: contentView;
 			yourself);
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		addOverlay: searchBox withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 

@@ -91,8 +91,7 @@ SpEasyColumnViewPresenter >> hideColumnHeaders [
 SpEasyColumnViewPresenter >> initializePresenters [
 
 	super initializePresenters.
-	contentView := self newColumnView.
-
+	contentView := self newColumnView
 ]
 
 { #category : 'testing' }
@@ -121,13 +120,13 @@ SpEasyColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 
 ]
 
-{ #category : 'enumerating' }
+{ #category : 'api - events' }
 SpEasyColumnViewPresenter >> whenSelectedDo: aBlock [ 
 	
 	contentView whenSelectedDo: aBlock
 ]
 
-{ #category : 'enumerating' }
+{ #category : 'api - events' }
 SpEasyColumnViewPresenter >> whenSelectedItemChangedDo: aBlock [ 
 	
 	contentView whenSelectedItemChangedDo: aBlock

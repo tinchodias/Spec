@@ -23,7 +23,6 @@ SpEasyListViewPresenter class >> example [
 	"This example show a simple list with all classes, using all the default settings."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		open;
 		yourself
@@ -33,7 +32,6 @@ SpEasyListViewPresenter class >> example [
 SpEasyListViewPresenter class >> exampleMultipleSelection [
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		beMultipleSelection;
 		open;
@@ -44,7 +42,6 @@ SpEasyListViewPresenter class >> exampleMultipleSelection [
 SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		headerTitle: 'Title';
 		open;
@@ -56,7 +53,6 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 	"This example show a simple list with icons."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		displayIcon: [ :e | self iconNamed: #forwardIcon ];
 		items: (1 to: 10) asArray;
 		open;
@@ -80,11 +76,11 @@ SpEasyListViewPresenter >> contextMenu: aBlock [
 SpEasyListViewPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
-		child: (SpBoxLayout newVertical 
+		child: (SpBoxLayout newTopToBottom 
 			add: headerPanel expand: false;
 			add: contentView;
 			yourself);
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		addOverlay: searchBox withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 

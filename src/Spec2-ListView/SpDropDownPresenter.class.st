@@ -1,3 +1,7 @@
+"
+A drop down presenter displays a drop down. 
+It replaces the old drop list presenter.
+"
 Class {
 	#name : 'SpDropDownPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',

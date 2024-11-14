@@ -6,9 +6,9 @@ Class {
 	#instVars : [
 		'listView'
 	],
-	#category : 'Spec2-ListView-Widget',
+	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
-	#tag : 'Widget'
+	#tag : 'Easy'
 }
 
 { #category : 'accessing' }

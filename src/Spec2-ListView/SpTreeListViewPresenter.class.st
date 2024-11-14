@@ -1,3 +1,8 @@
+"
+A tree list view presenter displays a tree. 
+It replaces the old tree list presenter but is a lot more customisable, as, in opposition to the old implementation, it accepts any presenter as tree cell.
+
+"
 Class {
 	#name : 'SpTreeListViewPresenter',
 	#superclass : 'SpAbstractTreePresenter',

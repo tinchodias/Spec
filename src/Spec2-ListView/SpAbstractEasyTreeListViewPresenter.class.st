@@ -69,14 +69,6 @@ SpAbstractEasyTreeListViewPresenter >> expandRoots [
 	contentView expandRoots
 ]
 
-{ #category : 'initialization' }
-SpAbstractEasyTreeListViewPresenter >> initialize [
-	
-	super initialize.
-	self initializeTSearchable.
-	self registerEvents
-]
-
 { #category : 'transmission' }
 SpAbstractEasyTreeListViewPresenter >> inputRootsPort [
 

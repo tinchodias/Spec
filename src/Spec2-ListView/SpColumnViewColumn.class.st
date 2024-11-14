@@ -1,3 +1,6 @@
+"
+A column definition to be used with `SpColumnViewPresenter` and `SpTreeColumnViewPresenter`
+"
 Class {
 	#name : 'SpColumnViewColumn',
 	#superclass : 'Object',
@@ -6,7 +9,8 @@ Class {
 		'bind',
 		'setup',
 		'expand',
-		'width'
+		'width',
+		'sortFunction'
 	],
 	#category : 'Spec2-ListView-Widget',
 	#package : 'Spec2-ListView',
@@ -74,6 +78,12 @@ SpColumnViewColumn >> isExpand [
 	^ expand
 ]
 
+{ #category : 'testing' }
+SpColumnViewColumn >> isSortable [
+
+	^ self sortFunction isNotNil
+]
+
 { #category : 'api' }
 SpColumnViewColumn >> setup: aBlock [
 
@@ -84,6 +94,18 @@ SpColumnViewColumn >> setup: aBlock [
 SpColumnViewColumn >> setupAction [
 
 	^ setup
+]
+
+{ #category : 'accessing' }
+SpColumnViewColumn >> sortFunction [
+
+	^ sortFunction
+]
+
+{ #category : 'accessing' }
+SpColumnViewColumn >> sortFunction: aSortFunction [
+
+	sortFunction := aSortFunction
 ]
 
 { #category : 'api' }

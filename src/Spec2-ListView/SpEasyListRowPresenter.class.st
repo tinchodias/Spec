@@ -5,9 +5,9 @@ Class {
 		'iconPresenter',
 		'textPresenter'
 	],
-	#category : 'Spec2-ListView-Widget',
+	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
-	#tag : 'Widget'
+	#tag : 'Easy'
 }
 
 { #category : 'layout' }
@@ -46,6 +46,7 @@ SpEasyListRowPresenter >> listView: aListView [
 SpEasyListRowPresenter >> textLayout [
 
 	^ SpBoxLayout newHorizontal
+		borderWidth: 2;
 		add: textPresenter;
 		yourself
 ]

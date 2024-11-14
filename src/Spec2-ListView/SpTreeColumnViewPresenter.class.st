@@ -1,3 +1,8 @@
+"
+A tree column view presenter displays a tree of tabular data. 
+It replaces the old tree table presenter but is a lot more customisable, as, in opposition to the old implementation, it accepts any presenter as tree table cell.
+
+"
 Class {
 	#name : 'SpTreeColumnViewPresenter',
 	#superclass : 'SpAbstractTreePresenter',

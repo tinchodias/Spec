@@ -51,7 +51,7 @@ SpMorphicTableColumn >> initialize [
 	addEmptySpace := false
 ]
 
-{ #category : 'testing' }
+{ #category : 'private' }
 SpMorphicTableColumn >> isExpandable [
 
 	^ self model isExpandable
@@ -118,7 +118,7 @@ SpMorphicTableColumn >> width: aNumber [
 		widthToAdd := addEmptySpace 
 			ifTrue: [ aNumber - self emptySpace ]
 			ifFalse: [ aNumber ].
-		(self model isExpandable and: [ aNumber isNotNil ])
+		(self isExpandable and: [ aNumber isNotNil ])
 			ifTrue: [ self model width: widthToAdd ] ].
 	super width: widthToAdd
 ]

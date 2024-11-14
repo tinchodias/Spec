@@ -94,6 +94,12 @@ SpToolbarToggleButtonPresenter >> isSelected [
 ]
 
 { #category : 'private' }
+SpToolbarToggleButtonPresenter >> performAction [
+	
+	self action value: self state
+]
+
+{ #category : 'private' }
 SpToolbarToggleButtonPresenter >> setSelection: aBoolean [
 
 	selected := aBoolean.
