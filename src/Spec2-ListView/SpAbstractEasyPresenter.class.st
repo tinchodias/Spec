@@ -41,13 +41,14 @@ SpAbstractEasyPresenter >> activateSearchWith: aString [
 
 	self isSearchEnabled ifFalse: [ ^ self ].
 
+	"keep last in case we need to go back there (if user cancels)"
 	lastSelectedRow := contentView selectedItem.
 
 	searchBox show.
 	searchBox text: aString.
 	searchBox takeKeyboardFocus.
 	searchBox unselectAll.
-	searchBox cursorPositionIndex: aString size
+	searchBox cursorPositionIndex: aString size + 1
 ]
 
 { #category : 'api' }
@@ -206,7 +207,12 @@ SpAbstractEasyPresenter >> maybeActivateSearchOn: event [
 	(event anyModifierKeyPressed 
 		or: [ (event keyValue between: 32 and: 127) not ])
 		ifTrue: [ ^ self ].
-	self activateSearchWith: event keyCharacter asString
+		
+	event wasHandled: true.
+	"I need to defer it beacuse in morphic this causes the event to 
+	 be passed to the box (no idea why)."
+	self application defer: [ 
+		self activateSearchWith: event keyCharacter asString ]
 ]
 
 { #category : 'transmission' }

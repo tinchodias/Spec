@@ -155,7 +155,10 @@ SpStyle class >> defaultStyleSheetData [
 	.progressBar:label [ Draw { #color : EnvironmentColor(#selectionText) } ], 
 	.progressBar:bar [ 
 		Draw { #color: EnvironmentColor(#selection) }, 
-		Geometry { #height: 5 } ] 
+		Geometry { #height: 5 } ] ,
+	.searchBox [
+		Geometry { #width: 150 }
+	]
 ]
 '
 ]

@@ -57,7 +57,7 @@ SpEasySearchBoxPresenter >> defaultLayout [
 { #category : 'initialization' }
 SpEasySearchBoxPresenter >> initializePresenters [
 
-	self addStyle: 'stSearchbar'.
+	self addStyle: 'searchBox'.
 
 	textInput := self newSearchInput.
 	closeButton := self newButton

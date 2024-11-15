@@ -269,7 +269,6 @@ SpListViewPresenter >> headerTitle: aString [
 SpListViewPresenter >> initialize [
 	
 	super initialize.
-	self initializeTSearchable.
 	self initializeItemFactory
 ]
 

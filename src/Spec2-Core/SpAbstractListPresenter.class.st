@@ -125,6 +125,7 @@ SpAbstractListPresenter >> initialize [
 
 	super initialize.
 	self initializeTHaveWrappingScrollBars.
+	self initializeTSearchable.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
@@ -257,6 +258,12 @@ SpAbstractListPresenter >> registerEvents [
 		self withAdapterDo: [ :anAdapter | anAdapter refreshWidgetSelection ] ].
 	self whenMenuChangedDo: [ 
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
+]
+
+{ #category : 'private' }
+SpAbstractListPresenter >> searchValueOf: item [ 
+
+	^ item asString
 ]
 
 { #category : 'api' }

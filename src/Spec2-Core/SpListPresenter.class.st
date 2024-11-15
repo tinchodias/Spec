@@ -150,7 +150,6 @@ SpListPresenter >> iconFor: anItem [
 SpListPresenter >> initialize [
 
 	super initialize.
-	self initializeTSearchable.
 	autoDeselect := true.
 	allowToSelect := true.
 	display := [ :object | object asStringOrText ]

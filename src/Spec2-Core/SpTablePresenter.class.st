@@ -8,8 +8,6 @@ A table has columns with a type (See column types section).
 Class {
 	#name : 'SpTablePresenter',
 	#superclass : 'SpAbstractListPresenter',
-	#traits : 'SpTSearchable',
-	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
 		'#columns => ObservableSlot',
 		'#showColumnHeaders => ObservableSlot',
@@ -110,7 +108,6 @@ SpTablePresenter >> hideColumnHeaders [
 SpTablePresenter >> initialize [ 
 
 	super initialize.
-	self initializeTSearchable.
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false
@@ -140,12 +137,6 @@ SpTablePresenter >> removeColumn: aColumn [
 	"Remove a column from the table. A column should be an instance of `SpTableColumn`"
 
 	columns := columns copyWithout: aColumn
-]
-
-{ #category : 'private' }
-SpTablePresenter >> searchValueOf: anObject [
-	
-	^ anObject asString
 ]
 
 { #category : 'api' }
