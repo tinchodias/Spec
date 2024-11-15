@@ -111,15 +111,14 @@ SpAbstractTextPresenterTest >> testCursorPositionIndex [
 
 	presenter text: (String loremIpsum: 80).
 	self openInstance. "cursor position does not works if instance is not opened"
-	"If not defined, cursor is at begining"	
-	self assert: presenter cursorPositionIndex equals: 1.
+	"If not defined, cursor is at the end of a "	
+	self assert: presenter cursorPositionIndex equals: 81.
 	"middle"
 	presenter cursorPositionIndex: 20.
 	self assert: presenter cursorPositionIndex equals: 20.
 	"end"
 	presenter cursorPositionIndex: 81.
 	self assert: presenter cursorPositionIndex equals: 81
-
 ]
 
 { #category : 'tests' }
@@ -160,6 +159,20 @@ SpAbstractTextPresenterTest >> testSelectAllWithoutOpening [
 	presenter selectAll.
 	
 	self assert: presenter selectionInterval equals: (1 to: 15)
+]
+
+{ #category : 'tests' }
+SpAbstractTextPresenterTest >> testTextIsSetAndCursorPositionedCorrectly [
+
+	presenter text: 'aText'.
+	"no cursor position before is open"
+	self assert: presenter cursorPositionIndex equals: nil.	
+	self openInstance.
+	"now it has to be placed at the end"
+	self assert: presenter cursorPositionIndex equals: 6.
+	"now change it already opened"
+	presenter text: 'aTextAText'. 
+	self assert: presenter cursorPositionIndex equals: 11
 ]
 
 { #category : 'tests' }

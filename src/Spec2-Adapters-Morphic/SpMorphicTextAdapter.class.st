@@ -69,14 +69,16 @@ SpMorphicTextAdapter >> buildWidget [
 	self setEnabled: self presenter isEnabled to: newWidget.	
 	self setEditable: self presenter isEditable to: newWidget.
 	self setEditingModeFor: newWidget.
+
 	self setText: self presenter text to: newWidget.
 	self presenter selectionInterval 
-		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
+		ifNotEmpty: [  :anInterval | self selectionInterval: anInterval on: newWidget ]
+		ifEmpty: [
+			self presenter text ifNotNil: [ :aString |
+				self cursorPositionIndex: aString size + 1 to: newWidget ] ].
 
 	self setWrapWord: self presenter isWrapWord to: newWidget.	
 	self setUndoRedo: self presenter hasUndoRedoHistory to: newWidget. 
-	self presenter whenTextChangedDo: [ :text | 
-		self setText: text to: newWidget ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
 		self selectionInterval: selectionInterval ].
 	self presenter whenPlaceholderChangedDo: [ :text | 
@@ -132,9 +134,9 @@ SpMorphicTextAdapter >> cursorPosition [
 ]
 
 { #category : 'widget API' }
-SpMorphicTextAdapter >> cursorPositionIndex: index [ 
+SpMorphicTextAdapter >> cursorPositionIndex: index to: aWidget [
 
-	self widgetDo: [ :w | w textArea pointBlock: (w textArea paragraph characterBlockForIndex: index) ]
+	aWidget textArea pointBlock: (aWidget textArea paragraph characterBlockForIndex: index)
 ]
 
 { #category : 'commands' }
@@ -238,6 +240,13 @@ SpMorphicTextAdapter >> setWrapWord: aBoolean to: aWidget [
 	aBoolean 
 		ifTrue: [ aWidget beWrapped ]
 		ifFalse: [ aWidget beNotWrapped ]
+]
+
+{ #category : 'accessing' }
+SpMorphicTextAdapter >> text: aString [
+
+	self setText: aString to: widget.
+	self cursorPositionIndex: aString size + 1
 ]
 
 { #category : 'private' }

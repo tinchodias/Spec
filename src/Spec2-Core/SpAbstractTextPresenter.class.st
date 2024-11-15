@@ -228,7 +228,8 @@ SpAbstractTextPresenter >> registerActions [
 { #category : 'initialization' }
 SpAbstractTextPresenter >> registerEvents [
 
-	self whenTextChangedDo: [ self changed: #getText ].
+	self whenTextChangedDo: [ :aString |
+		self updateTextFromModel: aString ].
 	self 
 		property: #selection 
 		whenChangedDo: [ :aSelection | self updateSelectionFromModel: aSelection ]
@@ -336,6 +337,13 @@ SpAbstractTextPresenter >> updateSelectionFromModel: aSelection [
 
 	self withAdapterDo: [ :anAdapter | 
 		anAdapter setSelectionFromModel: aSelection ]
+]
+
+{ #category : 'private' }
+SpAbstractTextPresenter >> updateTextFromModel: aString [
+
+	self withAdapterDo: [ :anAdapter |
+		anAdapter text: aString ]
 ]
 
 { #category : 'api - events' }
