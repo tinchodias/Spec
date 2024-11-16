@@ -403,7 +403,7 @@ SpCodePresenter >> evaluate: aString onCompileError: compileErrorBlock onError: 
 				^ compileErrorBlock value ];
 			evaluate.
 		oldBindings size = self interactionModel bindings size 
-			ifFalse: [ self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ] ].
+			ifFalse: [ self refreshStyling ].
 		self announcer announce: (SpCodeEvaluationSucceedAnnouncement newContent: aString).
 		result ]
 	on: Error 
@@ -593,6 +593,12 @@ SpCodePresenter >> overridingContextMenu [
 	 on `SpAbstractTextPresenter>>contextMenu:`"
 	
 	self overrideContextMenu: true
+]
+
+{ #category : 'api' }
+SpCodePresenter >> refreshStyling [
+
+	self withAdapterDo: [ :anAdapter | anAdapter refreshStyling ]
 ]
 
 { #category : 'initialization' }
