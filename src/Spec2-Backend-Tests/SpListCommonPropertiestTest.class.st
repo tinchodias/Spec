@@ -54,8 +54,7 @@ SpListCommonPropertiestTest >> testScrollDownToNonExistingIndexScrollsBottomToLa
 
 { #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollDownToPosteriorIndexScrollsBottomToIndex [
-	self flag: #pharo7.
-	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
+
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 100.
 
@@ -82,8 +81,7 @@ SpListCommonPropertiestTest >> testScrollUpToNegativeIndexScrollsTopToFirstIndex
 
 { #category : 'tests - scrolling' }
 SpListCommonPropertiestTest >> testScrollUpToPreviousIndexScrollsTopToIndex [
-	self flag: #pharo7.
-	SystemVersion current major < 8 ifTrue: [ self skip. "Feature not supported in Pharo 7" ].
+
 	presenter items: (1 to: 500).
 	presenter verticalAlignment desiredVisibleRow: 100.
 	self openInstance.

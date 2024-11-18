@@ -39,7 +39,6 @@ SpMorphicListViewAdapter >> newDataSource [
 SpMorphicListViewAdapter >> newTableWith: datasource [
 	
 	^ SpFTTableMorph new
-		beRowNotHomogeneous;
 		disableFunction;
 		dataSource: datasource;
 		hideColumnHeaders;

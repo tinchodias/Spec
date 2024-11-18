@@ -158,7 +158,7 @@ SpMorphicListAdapter >> refreshList [
 { #category : 'widget API' }
 SpMorphicListAdapter >> refreshWidgetHeaderTitle [
 	
-	self presenter hasHeaderTitle 
+	self hasHeaderTitle 
 		ifTrue: [ 
 			self widget columns first model title: self presenter headerTitle.
 			self widget
