@@ -16,7 +16,8 @@ SpMorphicListViewAdapter >> buildWidget [
 	datasource model: self model.
 	
 	widget := self newTableWith: datasource.
-	widget disableSearch. 
+	"no search on list view (it has to be provided elsewhere)"
+	widget disableFunction. 
 	
 	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenSelectionChangedDo: [ self refreshWidgetSelection ].

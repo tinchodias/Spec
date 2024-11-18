@@ -8,7 +8,8 @@ Class {
 { #category : 'factory' }
 SpMorphicColumnViewAdapter >> addModelTo: tableMorph [
 
-	tableMorph disableSearch.
+	"no search on column view (it has to be provided elsewhere)"
+	tableMorph disableFunction.
 
 	self model columns do: [ :each |
 		tableMorph addColumn: (self newColumnFrom: each) ].

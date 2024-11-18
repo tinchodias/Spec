@@ -18,9 +18,10 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 ]
 
 { #category : 'api' }
-SpFTTableMorph >> disableSearch [
+SpFTTableMorph >> disableFunction [
 
-	function := FTNilFunction table: self
+	super disableFunction
+
 ]
 
 { #category : 'drawing' }

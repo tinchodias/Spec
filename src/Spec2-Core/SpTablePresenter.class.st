@@ -108,6 +108,7 @@ SpTablePresenter >> hideColumnHeaders [
 SpTablePresenter >> initialize [ 
 
 	super initialize.
+	self enableSearch.
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false
