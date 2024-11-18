@@ -75,8 +75,9 @@ SpMorphicTextAdapter >> buildWidget [
 		ifNotEmpty: [  :anInterval | self selectionInterval: anInterval on: newWidget ]
 		ifEmpty: [
 			self presenter text ifNotNil: [ :aString |
-				self cursorPositionIndex: aString size + 1 to: newWidget ] ].
-
+				self cursorPositionIndex: aString size + 1 to: newWidget.
+			self selectionInterval: (aString size + 1 to: aString size) on: newWidget ]. ].
+	
 	self setWrapWord: self presenter isWrapWord to: newWidget.	
 	self setUndoRedo: self presenter hasUndoRedoHistory to: newWidget. 
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 

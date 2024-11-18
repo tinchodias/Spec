@@ -283,7 +283,8 @@ SpMorphicBaseTextAdapter >> setSelection: interval [
 { #category : 'selection' }
 SpMorphicBaseTextAdapter >> setSelectionFromModel: aSelection [
 
-	self widget ifNotNil: [ :w | w setSelection: aSelection ]
+	self widget ifNotNil: [ :w | 
+		w setSelection: (aSelection ifNil: [ 1 to: 0 ]) ]
 ]
 
 { #category : 'initialization' }
