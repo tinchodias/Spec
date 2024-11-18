@@ -140,6 +140,12 @@ SpGridLayout >> add: aChild withConstraints: aBlock [
 	self announceChildAdded: aChild.
 ]
 
+{ #category : 'accessing' }
+SpGridLayout >> at: aPoint [
+	
+	^ childrenByPosition at: aPoint
+]
+
 { #category : 'api' }
 SpGridLayout >> beColumnHomogeneous [
 
