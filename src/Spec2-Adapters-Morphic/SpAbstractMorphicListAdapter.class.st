@@ -39,14 +39,22 @@ SpAbstractMorphicListAdapter >> addKeyBindingsTo: aWidget [
 ]
 
 { #category : 'scrolling' }
+SpAbstractMorphicListAdapter >> adjustDesiredVisibleRow: aNumber [
+
+	^ aNumber +  (self hasHeaderTitle
+		ifTrue: [ 0 ]
+		ifFalse: [ 1 ]) 
+]
+
+{ #category : 'scrolling' }
 SpAbstractMorphicListAdapter >> configureScrolling [
 	| vAlignment |
 	
 	vAlignment := self presenter verticalAlignment.
 	vAlignment whenChangedDo: [ 
-		widget scrollToIndex: vAlignment desiredVisibleRow ].
+		widget scrollToIndex: (self adjustDesiredVisibleRow: vAlignment desiredVisibleRow) ].
 	self presenter whenDisplayDo: [ 
-		widget scrollToIndex: vAlignment desiredVisibleRow.
+		widget scrollToIndex: (self adjustDesiredVisibleRow: vAlignment desiredVisibleRow).
 		self scrollingChanged ].
 		
 	widget
@@ -59,6 +67,12 @@ SpAbstractMorphicListAdapter >> configureScrolling [
 SpAbstractMorphicListAdapter >> elementAt: index [
 
 	^ self widget dataSource elementAt: index
+]
+
+{ #category : 'private' }
+SpAbstractMorphicListAdapter >> hasHeaderTitle [
+
+	^ self presenter hasHeaderTitle
 ]
 
 { #category : 'widget API' }

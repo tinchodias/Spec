@@ -8,6 +8,8 @@ Class {
 { #category : 'factory' }
 SpMorphicColumnViewAdapter >> addModelTo: tableMorph [
 
+	tableMorph disableSearch.
+
 	self model columns do: [ :each |
 		tableMorph addColumn: (self newColumnFrom: each) ].
 	self ensureAtLeastOneColumnIn: tableMorph.

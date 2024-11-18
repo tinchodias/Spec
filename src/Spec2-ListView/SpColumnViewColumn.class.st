@@ -63,6 +63,12 @@ SpColumnViewColumn >> hasFixedWidth [
 	^ width notNil
 ]
 
+{ #category : 'testing' }
+SpColumnViewColumn >> hasTitle [
+
+	^ self title isNotNil
+]
+
 { #category : 'initialization' }
 SpColumnViewColumn >> initialize [
 

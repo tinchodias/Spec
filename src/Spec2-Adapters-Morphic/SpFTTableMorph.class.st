@@ -17,6 +17,12 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 		event: anEvent
 ]
 
+{ #category : 'api' }
+SpFTTableMorph >> disableSearch [
+
+	function := FTNilFunction table: self
+]
+
 { #category : 'drawing' }
 SpFTTableMorph >> drawKeyboardFocusOn: aCanvas [
 

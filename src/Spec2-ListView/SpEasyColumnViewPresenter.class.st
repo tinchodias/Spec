@@ -62,7 +62,7 @@ SpEasyColumnViewPresenter >> beResizable [
 	contentView beResizable
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api' }
 SpEasyColumnViewPresenter >> columns: aCollection [ 
 	
 	contentView columns: aCollection 

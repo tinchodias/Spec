@@ -14,8 +14,10 @@ SpMorphicListViewAdapter >> buildWidget [
 	
 	datasource := self newDataSource.
 	datasource model: self model.
+	
 	widget := self newTableWith: datasource.
-
+	widget disableSearch. 
+	
 	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenSelectionChangedDo: [ self refreshWidgetSelection ].
 	self presenter selection whenChangedDo: [ self refreshWidgetSelection ].
