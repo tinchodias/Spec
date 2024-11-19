@@ -5,6 +5,12 @@ Class {
 	#package : 'Spec2-ListView-Tests'
 }
 
+{ #category : 'testing' }
+SpEasyListViewPresenterTest class >> shouldInheritSelectors [
+
+	^ true
+]
+
 { #category : 'accessing' }
 SpEasyListViewPresenterTest >> classToTest [
 	
@@ -13,6 +19,13 @@ SpEasyListViewPresenterTest >> classToTest [
 
 { #category : 'initialization' }
 SpEasyListViewPresenterTest >> initializeTestedInstance [
+]
+
+{ #category : 'tests' }
+SpEasyListViewPresenterTest >> testDisableActivationDuring [ 
+
+	"no needed here since this is private"
+	self skip
 ]
 
 { #category : 'tests - header' }

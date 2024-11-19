@@ -59,6 +59,12 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 		yourself
 ]
 
+{ #category : 'simulation' }
+SpEasyListViewPresenter >> clickAtIndex: aNumber [
+
+	contentView clickAtIndex: aNumber
+]
+
 { #category : 'initialization' }
 SpEasyListViewPresenter >> connectPresenters [
 
@@ -66,10 +72,15 @@ SpEasyListViewPresenter >> connectPresenters [
 ]
 
 { #category : 'api' }
+SpEasyListViewPresenter >> contextMenu [
+ 
+	^ contentView contextMenu
+]
+
+{ #category : 'api' }
 SpEasyListViewPresenter >> contextMenu: aBlock [
  
-	self flag: #TODO. "Ignored, as this should be deprecated"
-	
+	contentView contextMenu: aBlock
 ]
 
 { #category : 'layout' }
@@ -128,6 +139,12 @@ SpEasyListViewPresenter >> displayIcon: aBlock [
 SpEasyListViewPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
+]
+
+{ #category : 'simulation' }
+SpEasyListViewPresenter >> doubleClickAtIndex: aNumber [
+
+	contentView doubleClickAtIndex: aNumber
 ]
 
 { #category : 'testing' }
@@ -219,6 +236,24 @@ SpEasyListViewPresenter >> rowPresenterClass: aClass [
 	rowPresenterClass := aClass
 ]
 
+{ #category : 'api - selection' }
+SpEasyListViewPresenter >> selectAll [
+
+	contentView selectAll
+]
+
+{ #category : 'api' }
+SpEasyListViewPresenter >> sortingBlock: aBlock [
+
+	contentView sortingBlock: aBlock
+]
+
+{ #category : 'api - selection' }
+SpEasyListViewPresenter >> unselectAll [
+
+	contentView unselectAll
+]
+
 { #category : 'api' }
 SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
 	
@@ -245,4 +280,16 @@ SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #displayIcon whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyListViewPresenter >> whenMenuChangedDo: aBlock [
+
+	contentView whenMenuChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyListViewPresenter >> whenSortingBlockChangedDo: aBlock [
+
+	contentView whenSortingBlockChangedDo: aBlock
 ]
