@@ -62,6 +62,12 @@ SpEasyColumnViewPresenter >> beResizable [
 	contentView beResizable
 ]
 
+{ #category : 'simulation' }
+SpEasyColumnViewPresenter >> clickAtIndex: aNumber [
+
+	contentView clickAtIndex: aNumber
+]
+
 { #category : 'api' }
 SpEasyColumnViewPresenter >> columns: aCollection [ 
 	
@@ -70,15 +76,27 @@ SpEasyColumnViewPresenter >> columns: aCollection [
 ]
 
 { #category : 'api' }
+SpEasyColumnViewPresenter >> contextMenu [
+	
+	^ contentView contextMenu
+]
+
+{ #category : 'api' }
 SpEasyColumnViewPresenter >> contextMenu: aBlock [ 
 	
-	self flag: #TODO. "ignored, as this is deprecated"
+	contentView contextMenu: aBlock
 ]
 
 { #category : 'private' }
 SpEasyColumnViewPresenter >> displayValueFor: aImage [
 	
 	^ contentView displayValueFor: aImage
+]
+
+{ #category : 'simulation' }
+SpEasyColumnViewPresenter >> doubleClickAtIndex: aNumber [
+
+	contentView doubleClickAtIndex: aNumber
 ]
 
 { #category : 'api' }
@@ -101,6 +119,12 @@ SpEasyColumnViewPresenter >> isShowingColumnHeaders [
 	^ contentView isShowingColumnHeaders
 ]
 
+{ #category : 'api - selection' }
+SpEasyColumnViewPresenter >> selectAll [
+
+	contentView selectAll
+]
+
 { #category : 'api' }
 SpEasyColumnViewPresenter >> showColumnHeaders [
 	
@@ -113,11 +137,23 @@ SpEasyColumnViewPresenter >> unselectAll [
 	contentView unselectAll
 ]
 
+{ #category : 'api' }
+SpEasyColumnViewPresenter >> updateItemsKeepingSelection: aSequenceableCollection [
+
+	contentView updateItemsKeepingSelection: aSequenceableCollection
+]
+
 { #category : 'api - events' }
 SpEasyColumnViewPresenter >> whenIsResizableChangedDo: aBlock [
 	
 	contentView whenIsResizableChangedDo: aBlock
 
+]
+
+{ #category : 'api - events' }
+SpEasyColumnViewPresenter >> whenMenuChangedDo: aBlock [ 
+	
+	contentView whenMenuChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

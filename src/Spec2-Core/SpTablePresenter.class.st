@@ -77,7 +77,7 @@ SpTablePresenter >> beResizable [
 	self isResizable: true
 ]
 
-{ #category : 'emulating' }
+{ #category : 'simulation' }
 SpTablePresenter >> clickOnColumnHeaderAt: anIndex [
 	self withAdapterDo: [ :tableAdapter | tableAdapter clickOnColumnHeaderAt: anIndex ]
 ]
