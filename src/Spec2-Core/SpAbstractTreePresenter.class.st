@@ -204,6 +204,9 @@ SpAbstractTreePresenter >> initialize [
 	super initialize.
 	self initializeTSearchable.
 	self initializeTHaveWrappingScrollBars.
+	
+	verticalAlignment := SpVerticalAlignment new.
+
 	self withScrollBars.
 	self registerEvents
 ]

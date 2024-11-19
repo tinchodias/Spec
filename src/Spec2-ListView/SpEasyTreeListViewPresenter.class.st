@@ -18,12 +18,6 @@ SpEasyTreeListViewPresenter class >> defaultRowPresenterClass [
 	^ SpEasyListRowPresenter
 ]
 
-{ #category : 'api' }
-SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
-	
-	self flag: #TODO
-]
-
 { #category : 'layout' }
 SpEasyTreeListViewPresenter >> defaultLayout [
 
