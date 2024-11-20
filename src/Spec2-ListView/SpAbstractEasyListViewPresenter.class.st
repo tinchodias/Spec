@@ -96,6 +96,14 @@ SpAbstractEasyListViewPresenter >> selectItem: anObject [
 ]
 
 { #category : 'api - selection' }
+SpAbstractEasyListViewPresenter >> selectItem: anObject scrollToSelection: aBoolean [ 
+	
+	contentView 
+		selectItem: anObject 
+		scrollToSelection: aBoolean
+]
+
+{ #category : 'api - selection' }
 SpAbstractEasyListViewPresenter >> selectedIndex [
 
 	^ contentView selectedIndex
