@@ -35,7 +35,8 @@ SpGridLayoutBuilder class >> on: aGridLayout [
 
 { #category : 'api' }
 SpGridLayoutBuilder >> add: aChild [
-	layout add: aChild at: self nextColumn @ self currentRow.
+
+	layout add: aChild atPoint: self nextColumn @ self currentRow
 ]
 
 { #category : 'api' }

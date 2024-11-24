@@ -135,10 +135,7 @@ SpGridLayout >> add: aName at: aPoint span: spanPoint [
 { #category : 'api - adding' }
 SpGridLayout >> add: aName atPoint: aPoint [
 
-	^ self 
-		add: aName 
-		at: aPoint
-		span: 1@1
+	^ self add: aName atPoint: aPoint span: 1 @ 1
 ]
 
 { #category : 'api - adding' }
