@@ -108,8 +108,32 @@ SpGridLayout >> adapterName [
 	^ #GridAdapter
 ]
 
-{ #category : 'api - adding' }
+{ #category : 'deprecated' }
 SpGridLayout >> add: aName at: aPoint [
+
+	self deprecated: 'Use add:atPoint:'
+		on: '24/11/2024'
+		in: #Pharo13
+		transformWith: '`@receiver add: `@arg at: `@aPoint'
+						-> '`@receiver add: `@arg atPoint: `@aPoint'.
+						
+	^  self add: aName atPoint: aPoint
+]
+
+{ #category : 'deprecated' }
+SpGridLayout >> add: aName at: aPoint span: spanPoint [
+
+	self deprecated: 'Use add:atPoint:span:'
+		on: '24/11/2024'
+		in: #Pharo13
+		transformWith: '`@receiver add: `@arg at: `@aPoint span: `@span'
+						-> '`@receiver add: `@arg atPoint: `@aPoint span: `@span'.
+						
+	^ self add: aName atPoint: aPoint span: spanPoint
+]
+
+{ #category : 'api - adding' }
+SpGridLayout >> add: aName atPoint: aPoint [
 
 	^ self 
 		add: aName 
@@ -118,7 +142,7 @@ SpGridLayout >> add: aName at: aPoint [
 ]
 
 { #category : 'api - adding' }
-SpGridLayout >> add: aName at: aPoint span: spanPoint [
+SpGridLayout >> add: aName atPoint: aPoint span: spanPoint [
 
 	childrenByPosition at: aPoint ifPresent: [ :e |
 		"Remove element at the same position"
@@ -140,8 +164,20 @@ SpGridLayout >> add: aChild withConstraints: aBlock [
 	self announceChildAdded: aChild.
 ]
 
-{ #category : 'accessing' }
+{ #category : 'deprecated' }
 SpGridLayout >> at: aPoint [
+	
+	self deprecated: 'Use atPoint:'
+		on: '24/11/2024'
+		in: #Pharo13
+		transformWith: '`@receiver at: `@aPoint'
+						-> '`@receiver atPoint: `@aPoint'.
+	
+	^ self atPoint: aPoint
+]
+
+{ #category : 'accessing' }
+SpGridLayout >> atPoint: aPoint [
 	
 	^ childrenByPosition at: aPoint
 ]
@@ -261,13 +297,26 @@ SpGridLayout >> isRowHomogeneous [
 	^ rowHomogeneous
 ]
 
-{ #category : 'api - adding' }
+{ #category : 'deprecated' }
 SpGridLayout >> replaceAt: aPoint with: aPresenter [
+	"This is just a synonym of SpGridLayout>>#add:at:, added for clarity"
+	
+	self deprecated: 'Use replaceAtPoint:with:'
+		on: '24/11/2024'
+		in: #Pharo13
+		transformWith: '`@receiver replaceAt:`@aPoint with: `@aPresenter'
+						-> '`@receiver replaceAtPoint: `@aPoint with: `@aPresenter'.
+						
+	^ self replaceAtPoint: aPoint with: aPresenter
+]
+
+{ #category : 'api - adding' }
+SpGridLayout >> replaceAtPoint: aPoint with: aPresenter [
 	"This is just a synonym of SpGridLayout>>#add:at:, added for clarity"
 	
 	^ self 
 		add: aPresenter
-		at: aPoint
+		atPoint: aPoint
 ]
 
 { #category : 'api' }
