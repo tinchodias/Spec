@@ -322,7 +322,7 @@ SpWindowPresenter >> initialize [
 
 { #category : 'initialization' }
 SpWindowPresenter >> initializeWindow [
-		
+
 	self presenter initializeWindow: self
 ]
 

@@ -28,7 +28,7 @@ SpTreeListViewPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		items: { Object };
 		children: [ :aClass | aClass subclasses ];
 		setup: [ :aPresenter | aPresenter newLabel ];
@@ -235,7 +235,6 @@ SpTreeListViewPresenter >> initialize [
 	self beSingleSelection.
 	self activateOnDoubleClick.
 
-	self registerActions.	
 	self initializeItemFactory
 ]
 
@@ -245,6 +244,19 @@ SpTreeListViewPresenter >> initializeItemFactory [
 	
 	self setup: [ :aPresenter | aPresenter newLabel ].
 	self bind: [ :aPresenter :anObject | aPresenter label: anObject asString ]
+]
+
+{ #category : 'initialization' }
+SpTreeListViewPresenter >> registerActions [
+
+	super registerActions.
+	self ensureInternalActions
+		addShortcutWith: [ :action | action 
+			shortcutKey: KeyboardKey right asKeyCombination | KeyboardKey space asKeyCombination;
+			action: [ self expandPath: self selection selectedPath ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: KeyboardKey left asKeyCombination;
+			action: [ self collapsePath: self selection selectedPath ] ]
 ]
 
 { #category : 'initialization' }

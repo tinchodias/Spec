@@ -26,7 +26,7 @@ SpTreeColumnViewPresenter class >> adapterName [
 SpTreeColumnViewPresenter class >> example [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		addColumnTitle: 'Class' 
 			setup: [ :aPresenter | aPresenter newLabel ] 
 			bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
@@ -215,6 +215,19 @@ SpTreeColumnViewPresenter >> isShowingColumnHeaders [
 	"Answer true if the table is configured to show column headers."
 
 	^ showColumnHeaders
+]
+
+{ #category : 'initialization' }
+SpTreeColumnViewPresenter >> registerActions [
+
+	super registerActions.
+	self ensureInternalActions
+		addShortcutWith: [ :action | action 
+			shortcutKey: KeyboardKey right asKeyCombination | KeyboardKey space asKeyCombination;
+			action: [ self expandPath: self selection selectedPath ] ];
+		addShortcutWith: [ :action | action 
+			shortcutKey: KeyboardKey left asKeyCombination;
+			action: [ self collapsePath: self selection selectedPath ] ]
 ]
 
 { #category : 'api' }

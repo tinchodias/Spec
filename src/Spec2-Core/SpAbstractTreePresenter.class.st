@@ -208,6 +208,7 @@ SpAbstractTreePresenter >> initialize [
 	verticalAlignment := SpVerticalAlignment new.
 
 	self withScrollBars.
+	self registerActions.
 	self registerEvents
 ]
 

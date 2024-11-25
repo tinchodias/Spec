@@ -69,14 +69,16 @@ SpMorphicTreeTableDataSource >> collapsePath: aPath [
 
 	(self itemAtPath: aPath) ifNotNil:[ :aNode | 
 		aNode collapseAll.
-		self tableRefresh ]
+		self tableRefresh.
+		self model selection selectPath: aPath ]
 ]
 
 { #category : 'accessing' }
-SpMorphicTreeTableDataSource >> expandPath: anArray [
+SpMorphicTreeTableDataSource >> expandPath: aPath [
 
-	self expandPath: anArray root: self rootItem children.
-	self tableRefresh
+	self expandPath: aPath root: self rootItem children.
+	self tableRefresh.
+	self model selection selectPath: aPath
 ]
 
 { #category : 'accessing' }
