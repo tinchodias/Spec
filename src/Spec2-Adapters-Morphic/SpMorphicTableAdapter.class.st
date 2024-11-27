@@ -102,6 +102,12 @@ SpMorphicTableAdapter >> ensureAtLeastOneColumnIn: tableMorph [
 ]
 
 { #category : 'private' }
+SpMorphicTableAdapter >> hasHeaderTitle [
+
+	^ self presenter isShowingColumnHeaders
+]
+
+{ #category : 'private' }
 SpMorphicTableAdapter >> ifSorted: sortedBlock ifNotSorted: notSortedBlock [ 
 	widget columns 
 		do: [ :column | | state | 

@@ -14,8 +14,11 @@ SpMorphicListViewAdapter >> buildWidget [
 	
 	datasource := self newDataSource.
 	datasource model: self model.
+	
 	widget := self newTableWith: datasource.
-
+	"no search on list view (it has to be provided elsewhere)"
+	widget disableFunction. 
+	
 	self presenter whenModelChangedDo: [ widget refresh ].
 	self presenter whenSelectionChangedDo: [ self refreshWidgetSelection ].
 	self presenter selection whenChangedDo: [ self refreshWidgetSelection ].
@@ -36,7 +39,6 @@ SpMorphicListViewAdapter >> newDataSource [
 SpMorphicListViewAdapter >> newTableWith: datasource [
 	
 	^ SpFTTableMorph new
-		beRowNotHomogeneous;
 		disableFunction;
 		dataSource: datasource;
 		hideColumnHeaders;

@@ -21,7 +21,7 @@ SpAbstractEasyListViewPresenter >> findFirst: aString [
 	items isEmptyOrNil ifTrue: [ ^ 0 ].
 	
 	(contentView selection selectedIndex max: 1) to: items size do: [ :index | 
-	 	(self
+	 	(contentView 
 			performSearch: (items at: index)
 			matching: aString)
 			ifTrue: [ ^ index ] ].
@@ -75,6 +75,8 @@ SpAbstractEasyListViewPresenter >> selectFirst [
 SpAbstractEasyListViewPresenter >> selectFirst: aString [
 	| index |
 
+	self isSearchEnabled ifFalse: [ ^ self ].
+
 	index := self findFirst: aString.
 	index = 0 ifTrue: [ ^ self ].
 	
@@ -91,6 +93,14 @@ SpAbstractEasyListViewPresenter >> selectIndex: anInteger [
 SpAbstractEasyListViewPresenter >> selectItem: anObject [
 	
 	contentView selectItem: anObject
+]
+
+{ #category : 'api - selection' }
+SpAbstractEasyListViewPresenter >> selectItem: anObject scrollToSelection: aBoolean [ 
+	
+	contentView 
+		selectItem: anObject 
+		scrollToSelection: aBoolean
 ]
 
 { #category : 'api - selection' }

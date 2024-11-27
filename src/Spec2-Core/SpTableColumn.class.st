@@ -117,6 +117,12 @@ SpTableColumn >> hasFixedWidth [
 	^ (self width isNil or: [ self width = 0 ]) not
 ]
 
+{ #category : 'testing' }
+SpTableColumn >> hasTitle [
+
+	^ self title isNotNil
+]
+
 { #category : 'initialization' }
 SpTableColumn >> initialize [
 

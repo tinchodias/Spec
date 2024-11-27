@@ -23,7 +23,6 @@ SpEasyListViewPresenter class >> example [
 	"This example show a simple list with all classes, using all the default settings."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		open;
 		yourself
@@ -33,7 +32,6 @@ SpEasyListViewPresenter class >> example [
 SpEasyListViewPresenter class >> exampleMultipleSelection [
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		beMultipleSelection;
 		open;
@@ -44,7 +42,6 @@ SpEasyListViewPresenter class >> exampleMultipleSelection [
 SpEasyListViewPresenter class >> exampleWithHeaderTitle [
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		items: self environment allClasses;
 		headerTitle: 'Title';
 		open;
@@ -56,11 +53,16 @@ SpEasyListViewPresenter class >> exampleWithIcons [
 	"This example show a simple list with icons."
 
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
 		displayIcon: [ :e | self iconNamed: #forwardIcon ];
 		items: (1 to: 10) asArray;
 		open;
 		yourself
+]
+
+{ #category : 'simulation' }
+SpEasyListViewPresenter >> clickAtIndex: aNumber [
+
+	contentView clickAtIndex: aNumber
 ]
 
 { #category : 'initialization' }
@@ -70,21 +72,26 @@ SpEasyListViewPresenter >> connectPresenters [
 ]
 
 { #category : 'api' }
+SpEasyListViewPresenter >> contextMenu [
+ 
+	^ contentView contextMenu
+]
+
+{ #category : 'api' }
 SpEasyListViewPresenter >> contextMenu: aBlock [
  
-	self flag: #TODO. "Ignored, as this should be deprecated"
-	
+	contentView contextMenu: aBlock
 ]
 
 { #category : 'layout' }
 SpEasyListViewPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
-		child: (SpBoxLayout newVertical 
+		child: (SpBoxLayout newTopToBottom 
 			add: headerPanel expand: false;
 			add: contentView;
 			yourself);
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		addOverlay: searchBox withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 
@@ -132,6 +139,12 @@ SpEasyListViewPresenter >> displayIcon: aBlock [
 SpEasyListViewPresenter >> displayValueFor: anObject [
 
 	^ self display value: anObject
+]
+
+{ #category : 'simulation' }
+SpEasyListViewPresenter >> doubleClickAtIndex: aNumber [
+
+	contentView doubleClickAtIndex: aNumber
 ]
 
 { #category : 'testing' }
@@ -223,6 +236,24 @@ SpEasyListViewPresenter >> rowPresenterClass: aClass [
 	rowPresenterClass := aClass
 ]
 
+{ #category : 'api - selection' }
+SpEasyListViewPresenter >> selectAll [
+
+	contentView selectAll
+]
+
+{ #category : 'api' }
+SpEasyListViewPresenter >> sortingBlock: aBlock [
+
+	contentView sortingBlock: aBlock
+]
+
+{ #category : 'api - selection' }
+SpEasyListViewPresenter >> unselectAll [
+
+	contentView unselectAll
+]
+
 { #category : 'api' }
 SpEasyListViewPresenter >> updateItemsKeepingSelection: aCollection [
 	
@@ -249,4 +280,16 @@ SpEasyListViewPresenter >> whenIconsChangedDo: aBlock [
 	 - the announcement triggering this action"
 
 	self property: #displayIcon whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyListViewPresenter >> whenMenuChangedDo: aBlock [
+
+	contentView whenMenuChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpEasyListViewPresenter >> whenSortingBlockChangedDo: aBlock [
+
+	contentView whenSortingBlockChangedDo: aBlock
 ]

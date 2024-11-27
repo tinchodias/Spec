@@ -1,9 +1,6 @@
-"
-A morphic datasource for `SpListViewPresenter`, to be used on the `SpMorphicListViewAdapter`.
-"
 Class {
-	#name : 'SpMorphicListViewDataSource',
-	#superclass : 'SpMorphicListDataSource',
+	#name : 'SpMorphicColumnViewDataSource',
+	#superclass : 'SpMorphicTableDataSource',
 	#instVars : [
 		'rowHeights'
 	],
@@ -12,33 +9,35 @@ Class {
 }
 
 { #category : 'accessing' }
-SpMorphicListViewDataSource >> cellColumn: column row: rowIndex [
+SpMorphicColumnViewDataSource >> cellColumn: column row: rowIndex [
 	| cell contentPresenter contentMorph |
 
 	cell := FTCellMorph new.
 
-	contentPresenter := self model setupAction value: self model.
-	self model bindAction 
+	contentPresenter := column setupAction value: self model.	
+	column bindAction 
 		value: contentPresenter
 		value: (self elementAt: rowIndex).
-
+		
 	contentMorph := contentPresenter build.
 
 	"register for height"
 	rowHeights at: rowIndex put: contentMorph height.
 
+	self setHeaderColumnLazyProperties: column.
+		
 	^ cell addMorphBack: contentMorph
 ]
 
 { #category : 'initialization' }
-SpMorphicListViewDataSource >> initialize [
+SpMorphicColumnViewDataSource >> initialize [
 
 	super initialize.
 	rowHeights := Dictionary new
 ]
 
 { #category : 'accessing' }
-SpMorphicListViewDataSource >> rowHeight: index [
+SpMorphicColumnViewDataSource >> rowHeight: index [
 
 	^ rowHeights 
 		at: index 

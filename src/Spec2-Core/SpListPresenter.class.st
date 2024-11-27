@@ -13,8 +13,8 @@ A list presenter does not offer the possibility to add one item in isolation ins
 Class {
 	#name : 'SpListPresenter',
 	#superclass : 'SpAbstractListPresenter',
-	#traits : 'SpTSearchable + SpTDecoratedText',
-	#classTraits : 'SpTSearchable classTrait + SpTDecoratedText classTrait',
+	#traits : 'SpTDecoratedText',
+	#classTraits : 'SpTDecoratedText classTrait',
 	#instVars : [
 		'#allowToSelect => ObservableSlot',
 		'#autoDeselect => ObservableSlot',
@@ -150,7 +150,7 @@ SpListPresenter >> iconFor: anItem [
 SpListPresenter >> initialize [
 
 	super initialize.
-	self initializeTSearchable.
+	self enableSearch.
 	autoDeselect := true.
 	allowToSelect := true.
 	display := [ :object | object asStringOrText ]

@@ -47,6 +47,7 @@ SpTSearchable >> initializeTSearchable [
 	
 	self searchMatching: [ :item :pattern | 
 		self performDefaultSearch: item matching: pattern ].
+	self disableSearch
 ]
 
 { #category : 'testing' }

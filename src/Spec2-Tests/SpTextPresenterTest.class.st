@@ -113,6 +113,7 @@ SpTextPresenterTest >> testSelectLine [
 with multiple
 lines'.
 	self openInstance.
+	presenter cursorPositionIndex: 1.
 	presenter selectLine.
 	self assert: presenter selectionInterval equals: (1 to: 15)
 ]

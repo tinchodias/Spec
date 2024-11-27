@@ -18,12 +18,6 @@ SpEasyTreeListViewPresenter class >> defaultRowPresenterClass [
 	^ SpEasyListRowPresenter
 ]
 
-{ #category : 'api' }
-SpEasyTreeListViewPresenter >> contextMenu: aBlock [ 
-	
-	self flag: #TODO
-]
-
 { #category : 'layout' }
 SpEasyTreeListViewPresenter >> defaultLayout [
 
@@ -32,7 +26,7 @@ SpEasyTreeListViewPresenter >> defaultLayout [
 			add: headerPanel expand: false;
 			add: contentView;
 			yourself);
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		addOverlay: searchBox withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 

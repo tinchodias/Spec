@@ -25,6 +25,12 @@ SpAbstractEasyTreeListViewPresenter >> children: aBlock [
 	contentView children: aBlock
 ]
 
+{ #category : 'simulation' }
+SpAbstractEasyTreeListViewPresenter >> clickAtPath: aPath [
+
+	contentView clickAtPath: aPath
+]
+
 { #category : 'api' }
 SpAbstractEasyTreeListViewPresenter >> collapseAll [
 	"Collapse all nodes of the tree. "
@@ -40,10 +46,28 @@ SpAbstractEasyTreeListViewPresenter >> collapsePath: aPath [
 	contentView collapsePath: aPath
 ]
 
+{ #category : 'api' }
+SpAbstractEasyTreeListViewPresenter >> contextMenu [
+
+	^ contentView contextMenu
+]
+
+{ #category : 'api' }
+SpAbstractEasyTreeListViewPresenter >> contextMenu: aBlock [
+
+	contentView contextMenu: aBlock
+]
+
 { #category : 'transmission' }
 SpAbstractEasyTreeListViewPresenter >> defaultInputPort [
 
 	^ self inputRootsPort
+]
+
+{ #category : 'simulation' }
+SpAbstractEasyTreeListViewPresenter >> doubleClickAtPath: aPath [
+
+	contentView doubleClickAtPath: aPath
 ]
 
 { #category : 'api' }
@@ -69,18 +93,17 @@ SpAbstractEasyTreeListViewPresenter >> expandRoots [
 	contentView expandRoots
 ]
 
-{ #category : 'initialization' }
-SpAbstractEasyTreeListViewPresenter >> initialize [
-	
-	super initialize.
-	self initializeTSearchable.
-	self registerEvents
-]
-
 { #category : 'transmission' }
 SpAbstractEasyTreeListViewPresenter >> inputRootsPort [
 
 	^ SpRootsPort newPresenter: self
+]
+
+{ #category : 'testing' }
+SpAbstractEasyTreeListViewPresenter >> isExpanded: aPath [
+
+	^ contentView isExpanded: aPath
+
 ]
 
 { #category : 'api' }
@@ -261,6 +284,12 @@ SpAbstractEasyTreeListViewPresenter >> updateRootsKeepingSelection: aCollection 
 	 WARNING: aCollection must includes the elements selected."
 
 	contentView updateRootsKeepingSelection: aCollection
+]
+
+{ #category : 'api - events' }
+SpAbstractEasyTreeListViewPresenter >> whenMenuChangedDo: aBlock [
+
+	contentView whenMenuChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

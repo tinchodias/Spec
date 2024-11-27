@@ -17,6 +17,13 @@ SpFTTableMorph >> acceptDroppingMorph: aTransferMorph event: anEvent [
 		event: anEvent
 ]
 
+{ #category : 'api' }
+SpFTTableMorph >> disableFunction [
+
+	super disableFunction
+
+]
+
 { #category : 'drawing' }
 SpFTTableMorph >> drawKeyboardFocusOn: aCanvas [
 

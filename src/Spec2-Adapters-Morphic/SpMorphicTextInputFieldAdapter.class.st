@@ -42,8 +42,10 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 		yourself.
 
 	self presenter selectionInterval 
-		ifNotNil: [  :anInterval | self selectionInterval: anInterval on: newWidget ].
-	self presenter whenTextChangedDo: [ :text | newWidget setText: text ].
+		ifNotEmpty: [ :anInterval | self selectionInterval: anInterval on: newWidget ]
+		ifEmpty: [ 
+			self presenter text ifNotNil: [ :aString |
+				self cursorPositionIndex: aString size + 1 to: newWidget ] ].
 	self presenter whenSelectionChangedDo: [ :selectionInterval | 
 		self selectionInterval: selectionInterval ].
 	self presenter whenPlaceholderChangedDo: [ :text | 
@@ -62,9 +64,9 @@ SpMorphicTextInputFieldAdapter >> buildWidget [
 ]
 
 { #category : 'widget API' }
-SpMorphicTextInputFieldAdapter >> cursorPositionIndex: index [ 
+SpMorphicTextInputFieldAdapter >> cursorPositionIndex: index to: aWidget [
 
-	self widgetDo: [ :w | ^ w textArea editor selectAt: index ]
+	aWidget textArea editor selectAt: index
 ]
 
 { #category : 'widget API' }
@@ -122,7 +124,8 @@ SpMorphicTextInputFieldAdapter >> text: aString [
 
 	widget
 		setText: aString;
-		acceptTextInModel
+		acceptTextInModel.
+	self cursorPositionIndex: aString size + 1
 ]
 
 { #category : 'emulating' }

@@ -8,8 +8,6 @@ A table has columns with a type (See column types section).
 Class {
 	#name : 'SpTablePresenter',
 	#superclass : 'SpAbstractListPresenter',
-	#traits : 'SpTSearchable',
-	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
 		'#columns => ObservableSlot',
 		'#showColumnHeaders => ObservableSlot',
@@ -79,7 +77,7 @@ SpTablePresenter >> beResizable [
 	self isResizable: true
 ]
 
-{ #category : 'emulating' }
+{ #category : 'simulation' }
 SpTablePresenter >> clickOnColumnHeaderAt: anIndex [
 	self withAdapterDo: [ :tableAdapter | tableAdapter clickOnColumnHeaderAt: anIndex ]
 ]
@@ -110,7 +108,7 @@ SpTablePresenter >> hideColumnHeaders [
 SpTablePresenter >> initialize [ 
 
 	super initialize.
-	self initializeTSearchable.
+	self enableSearch.
 	showColumnHeaders := true.
 	columns := #().
 	isResizable := false
@@ -140,12 +138,6 @@ SpTablePresenter >> removeColumn: aColumn [
 	"Remove a column from the table. A column should be an instance of `SpTableColumn`"
 
 	columns := columns copyWithout: aColumn
-]
-
-{ #category : 'private' }
-SpTablePresenter >> searchValueOf: anObject [
-	
-	^ anObject asString
 ]
 
 { #category : 'api' }

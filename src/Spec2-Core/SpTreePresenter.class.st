@@ -112,7 +112,10 @@ SpTreePresenter >> hideColumnHeaders [
 
 { #category : 'initialization' }
 SpTreePresenter >> initialize [
+	
 	super initialize.
+	
+	self enableSearch.
 
 	self withScrollBars.
 	

@@ -61,12 +61,6 @@ SpEasyTreeColumnViewPresenter >> columns: aCollection [
 ]
 
 { #category : 'api' }
-SpEasyTreeColumnViewPresenter >> contextMenu: aBlock [ 
-	
-	"do nothing, this does not work on gtk4"
-]
-
-{ #category : 'api' }
 SpEasyTreeColumnViewPresenter >> hideColumnHeaders [
 	"Hide the column headers"
 

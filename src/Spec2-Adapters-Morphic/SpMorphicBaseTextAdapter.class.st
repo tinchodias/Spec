@@ -104,6 +104,13 @@ SpMorphicBaseTextAdapter >> cursorPositionIndex [
 { #category : 'widget API' }
 SpMorphicBaseTextAdapter >> cursorPositionIndex: index [ 
 
+	self widgetDo: [ :w | 
+		self cursorPositionIndex: index to: w ]
+]
+
+{ #category : 'widget API' }
+SpMorphicBaseTextAdapter >> cursorPositionIndex: index to: aWidget [
+
 	self subclassResponsibility
 ]
 
@@ -276,7 +283,8 @@ SpMorphicBaseTextAdapter >> setSelection: interval [
 { #category : 'selection' }
 SpMorphicBaseTextAdapter >> setSelectionFromModel: aSelection [
 
-	self widget ifNotNil: [ :w | w setSelection: aSelection ]
+	self widget ifNotNil: [ :w | 
+		w setSelection: (aSelection ifNil: [ 1 to: 0 ]) ]
 ]
 
 { #category : 'initialization' }
@@ -287,6 +295,12 @@ SpMorphicBaseTextAdapter >> showContextMenu [
 			menu
 				invokeAt: w position + w textArea cursor center
 				in: self currentWorld ] ]
+]
+
+{ #category : 'accessing' }
+SpMorphicBaseTextAdapter >> text: aString [
+
+	self subclassResponsibility
 ]
 
 { #category : 'emulating' }

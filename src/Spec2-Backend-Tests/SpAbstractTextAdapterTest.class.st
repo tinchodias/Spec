@@ -74,7 +74,5 @@ SpAbstractTextAdapterTest >> testSelectionIntervalNilUnselectsEverything [
 	
 	self openInstance.
 	
-	self 
-		assert: presenter adapter selectionInterval
-		equals: (1 to: 0)
+	self assert: presenter adapter selectionInterval isEmpty
 ]

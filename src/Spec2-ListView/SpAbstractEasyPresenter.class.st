@@ -1,12 +1,10 @@
 Class {
 	#name : 'SpAbstractEasyPresenter',
 	#superclass : 'SpPresenter',
-	#traits : 'SpTSearchable',
-	#classTraits : 'SpTSearchable classTrait',
 	#instVars : [
 		'#contentView',
-		'#searchInput',
-		'#lastSelectedRow => WeakSlot'
+		'#lastSelectedRow => WeakSlot',
+		'#searchBox'
 	],
 	#category : 'Spec2-ListView-Easy',
 	#package : 'Spec2-ListView',
@@ -40,13 +38,16 @@ SpAbstractEasyPresenter >> activateOnSingleClick [
 { #category : 'private' }
 SpAbstractEasyPresenter >> activateSearchWith: aString [
 
+	self isSearchEnabled ifFalse: [ ^ self ].
+
+	"keep last in case we need to go back there (if user cancels)"
 	lastSelectedRow := contentView selectedItem.
 
-	searchInput text: aString.
-	searchInput show.
-	searchInput takeKeyboardFocus.
-	searchInput unselectAll.
-	searchInput cursorPositionIndex: aString size
+	searchBox show.
+	searchBox text: aString.
+	searchBox takeKeyboardFocus.
+	searchBox unselectAll.
+	searchBox cursorPositionIndex: aString size + 1
 ]
 
 { #category : 'api' }
@@ -71,18 +72,14 @@ SpAbstractEasyPresenter >> beSingleSelection [
 { #category : 'initialization' }
 SpAbstractEasyPresenter >> connectPresenters [
 
-	searchInput 
-		addAction: (SpAction
-			newShortcutKey: Character escape asKeyCombination 
-			action: [ self deactivateSearch: false ]);
-		addAction: (SpAction
-			newShortcutKey: Character cr asKeyCombination 
-			action: [ self deactivateSearch: true ]);
-		whenTextChangedDo: [ :aString | self selectFirst: aString ].
+	searchBox
+		whenTextChangedDo: [ :aString | self selectFirst: aString ];
+		whenAcceptedDo: [ self deactivateSearch: true ];
+		whenDismissedDo: [ self deactivateSearch: false ].
 	
 	contentView eventHandler 
 		whenKeyDownDo: [ :event | self maybeActivateSearchOn: event ];
-		whenFocusReceivedDo: [ :event | searchInput hide ]
+		whenFocusReceivedDo: [ :event | searchBox hide ]
 ]
 
 { #category : 'api - actions' }
@@ -96,7 +93,7 @@ SpAbstractEasyPresenter >> deactivateSearch: acceptSelection [
 	| currentSelection |
 
 	currentSelection := contentView selectedItem.
-	searchInput hide.
+	searchBox hide.
 	contentView selectItem: (acceptSelection 
 		ifTrue: [ currentSelection ]
 		ifFalse: [ lastSelectedRow ]).
@@ -113,8 +110,10 @@ SpAbstractEasyPresenter >> defaultInputPort [
 SpAbstractEasyPresenter >> defaultLayout [
 
 	^ SpOverlayLayout new
-		child: contentView;
-		addOverlay: searchInput withConstraints: [ :c | c vAlignStart; hAlignEnd ];
+		child: (SpBoxLayout newTopToBottom
+			add: contentView;
+			yourself);
+		addOverlay: searchBox withConstraints: [ :c | c vAlignStart; hAlignEnd ];
 		yourself
 ]
 
@@ -131,9 +130,23 @@ SpAbstractEasyPresenter >> disable [
 ]
 
 { #category : 'api' }
+SpAbstractEasyPresenter >> disableSearch [
+	"Disable searching"
+
+	contentView disableSearch
+]
+
+{ #category : 'api' }
 SpAbstractEasyPresenter >> enable [
 
 	self enabled: true
+]
+
+{ #category : 'api' }
+SpAbstractEasyPresenter >> enableSearch [
+	"Enable searching"
+
+	contentView enableSearch
 ]
 
 { #category : 'private - actions' }
@@ -146,15 +159,14 @@ SpAbstractEasyPresenter >> ensureActions [
 SpAbstractEasyPresenter >> initialize [
 	
 	super initialize.
-	self initializeTSearchable.
 	self registerEvents
 ]
 
 { #category : 'initialization' }
 SpAbstractEasyPresenter >> initializePresenters [
 
-	searchInput := self newTextInput.
-	searchInput hide
+	searchBox := self instantiate: SpEasySearchBoxPresenter.
+	searchBox hide
 ]
 
 { #category : 'transmission' }
@@ -179,6 +191,13 @@ SpAbstractEasyPresenter >> isActiveOnSingleClick [
 	^ contentView isActiveOnSingleClick
 ]
 
+{ #category : 'testing' }
+SpAbstractEasyPresenter >> isSearchEnabled [
+	"Answer true if search is enabled (See `SpTSearchable>>#enableSearch`)"
+
+	^ contentView isSearchEnabled
+]
+
 { #category : 'private' }
 SpAbstractEasyPresenter >> maybeActivateSearchOn: event [
 		
@@ -187,7 +206,12 @@ SpAbstractEasyPresenter >> maybeActivateSearchOn: event [
 	(event anyModifierKeyPressed 
 		or: [ (event keyValue between: 32 and: 127) not ])
 		ifTrue: [ ^ self ].
-	self activateSearchWith: event keyCharacter asString
+		
+	event wasHandled: true.
+	"I need to defer it beacuse in morphic this causes the event to 
+	 be passed to the box (no idea why)."
+	self application defer: [ 
+		self activateSearchWith: event keyCharacter asString ]
 ]
 
 { #category : 'transmission' }
@@ -210,16 +234,37 @@ SpAbstractEasyPresenter >> outputSelectionPort [
 SpAbstractEasyPresenter >> registerEvents [
 ]
 
+{ #category : 'api' }
+SpAbstractEasyPresenter >> searchMatching: aBlock [
+	"Enables search and defines a block to perform a search on the model objects. 
+	 The block receives two parameters: 
+		- item (the model element)
+		- pattern (the string to match)"
+
+	contentView searchMatching: aBlock
+]
+
 { #category : 'private' }
 SpAbstractEasyPresenter >> selectFirst: aString [
 
-	self subclassResponsibility
+	contentView selectFirst: aString
 ]
 
 { #category : 'api - events' }
 SpAbstractEasyPresenter >> whenActivatedDo: aBlock [
 
 	contentView whenActivatedDo: aBlock 
+]
+
+{ #category : 'api - events' }
+SpAbstractEasyPresenter >> whenSearchEnabledChangedDo: aBlock [
+	"Inform when search enabled/disabled has changed.
+ 	 `aBlock` has three optional arguments: 
+	 - new value
+	 - old value
+	 - the announcement triggering this action"
+
+	contentView whenSearchModeChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

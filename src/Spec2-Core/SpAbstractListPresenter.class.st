@@ -4,8 +4,8 @@ A base for list presenters, it defines basic functionality common to all lists.
 Class {
 	#name : 'SpAbstractListPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
-	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn + SpTSelectionMode',
-	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait + SpTSelectionMode classTrait',
+	#traits : 'SpTHaveWrappingScrollBars + SpTContextMenu + SpTAlignableColumn + SpTSelectionMode + SpTSearchable',
+	#classTraits : 'SpTHaveWrappingScrollBars classTrait + SpTContextMenu classTrait + SpTAlignableColumn classTrait + SpTSelectionMode classTrait + SpTSearchable classTrait',
 	#instVars : [
 		'#activationBlock',
 		'#activateOnSingleClick',
@@ -125,6 +125,7 @@ SpAbstractListPresenter >> initialize [
 
 	super initialize.
 	self initializeTHaveWrappingScrollBars.
+	self initializeTSearchable.
 	
 	activationBlock := [ ].
 	verticalAlignment := SpVerticalAlignment new.
@@ -259,6 +260,12 @@ SpAbstractListPresenter >> registerEvents [
 		self withAdapterDo: [ :anAdapter | anAdapter updateMenu ] ]
 ]
 
+{ #category : 'private' }
+SpAbstractListPresenter >> searchValueOf: item [ 
+
+	^ item asString
+]
+
 { #category : 'api' }
 SpAbstractListPresenter >> sortingBlock [
 	"Answer the sorting block defined to sort the model list.
@@ -313,14 +320,6 @@ SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 	 - announcement triggered"
 
 	model whenChangedDo: aBlock
-]
-
-{ #category : 'api - events' }
-SpAbstractListPresenter >> whenSearchEnabledChangedDo: aBlock [
-	"Inform when search enabled/disabled has changed.
-	`aBlock` receives zero arguments."
-	
-	self property: #searchEnabled whenChangedDo: aBlock
 ]
 
 { #category : 'api - events' }

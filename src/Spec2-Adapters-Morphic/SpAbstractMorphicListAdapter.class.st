@@ -61,6 +61,12 @@ SpAbstractMorphicListAdapter >> elementAt: index [
 	^ self widget dataSource elementAt: index
 ]
 
+{ #category : 'private' }
+SpAbstractMorphicListAdapter >> hasHeaderTitle [
+
+	^ self presenter hasHeaderTitle
+]
+
 { #category : 'widget API' }
 SpAbstractMorphicListAdapter >> itemFilter [
 	^ self model itemFilter
