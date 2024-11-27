@@ -45,6 +45,25 @@ SpEasyColumnViewPresenter class >> exampleActivateOnDoubleClick [
 ]
 
 { #category : 'examples' }
+SpEasyColumnViewPresenter class >> exampleResizableColumns [
+	"This example show the simples list view you can make: A list with a label"
+	
+	self new
+		application: SpApplication new;
+		items: self environment allClasses;
+		beResizable;
+		addColumn: (SpStringTableColumn new 
+			title: 'Class';
+			evaluated: [ :each | each name ];
+			yourself);
+		addColumn: (SpStringTableColumn new 
+			title: 'Lines of code';
+			evaluated: [ :each | each linesOfCode ];
+			yourself);
+		open
+]
+
+{ #category : 'examples' }
 SpEasyColumnViewPresenter class >> exampleWithColumnWidth [
 	"This example show the simples list view you can make: A list with a label"
 	
