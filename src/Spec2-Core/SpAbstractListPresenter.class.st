@@ -323,14 +323,6 @@ SpAbstractListPresenter >> whenModelChangedDo: aBlock [
 ]
 
 { #category : 'api - events' }
-SpAbstractListPresenter >> whenSearchEnabledChangedDo: aBlock [
-	"Inform when search enabled/disabled has changed.
-	`aBlock` receives zero arguments."
-	
-	self property: #searchEnabled whenChangedDo: aBlock
-]
-
-{ #category : 'api - events' }
 SpAbstractListPresenter >> whenSortingBlockChangedDo: aBlock [
 	"Inform when sorting block changed. 
 	 `aBlock` receives one argument with the new sort function (or block with two arguments).
