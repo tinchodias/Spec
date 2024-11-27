@@ -3,7 +3,6 @@ Class {
 	#superclass : 'SpPresenter',
 	#instVars : [
 		'#contentView',
-		'#searchInput',
 		'#lastSelectedRow => WeakSlot',
 		'#searchBox'
 	],
