@@ -102,6 +102,12 @@ SpMorphicTextInputFieldAdapter >> getPlaceholderText [
 ]
 
 { #category : 'testing' }
+SpMorphicTextInputFieldAdapter >> hasKeyboardFocus [
+	
+	^ widget hasKeyboardFocus
+]
+
+{ #category : 'testing' }
 SpMorphicTextInputFieldAdapter >> isPassword [
 	
 	^ self widget font isKindOf: FixedFaceFont

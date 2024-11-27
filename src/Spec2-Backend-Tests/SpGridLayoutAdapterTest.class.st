@@ -16,147 +16,150 @@ SpGridLayoutAdapterTest >> newLayout [
 SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceReplacesChild [
 
 	| first second |
-	layout add: (first := SpButtonPresenter new) at: 1@1.
-	layout add: (second := SpButtonPresenter new) at: 1@1.
-	self assert: self adapter children first equals: second adapter widget
+	layout add: (first := SpButtonPresenter new) atPoint: 1 @ 1.
+	layout add: (second := SpButtonPresenter new) atPoint: 1 @ 1.
+	self
+		assert: self adapter children first
+		equals: second adapter widget
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddAtSamePositionTwiceSetsChildrenSingleTime [
 
-	layout add: (SpButtonPresenter new) at: 1@1.
-	layout add: (SpButtonPresenter new) at: 1@1.
+	layout add: SpButtonPresenter new atPoint: 1 @ 1.
+	layout add: SpButtonPresenter new atPoint: 1 @ 1.
 	self assert: self adapter children size equals: 1
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddElementAddsToAdapter [
 
-	layout add: SpButtonPresenter new at: 1@1.
+	layout add: SpButtonPresenter new atPoint: 1 @ 1.
 	self deny: self adapter isEmpty
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testAddElementAfterOpenAddsToAdapter [
 
-	layout add: SpButtonPresenter new at: 1@1.
+	layout add: SpButtonPresenter new atPoint: 1 @ 1.
 	self openInstance.
-	
-	layout add: SpButtonPresenter new at: 1@2.
+
+	layout add: SpButtonPresenter new atPoint: 1 @ 2.
 	self assert: self adapter children size equals: 2
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeColumnHomogeneous [
 
-	layout 
+	layout
 		beColumnHomogeneous;
-		add: 'Test' at: 1@1; 
-		add: 'Other label test' at: 2@1.
-		
+		add: 'Test' atPoint: 1 @ 1;
+		add: 'Other label test' atPoint: 2 @ 1.
+
 	self openInstance.
-	
-	self 
-		assert: presenter adapter widget submorphs first width 
+
+	self
+		assert: presenter adapter widget submorphs first width
 		equals: presenter adapter widget submorphs second width
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeColumnNotHomogeneous [
 
-	layout 
+	layout
 		beColumnNotHomogeneous;
-		add: 'Test' at: 1@1; 
-		add: 'Other label test' at: 2@1.
-		
+		add: 'Test' atPoint: 1 @ 1;
+		add: 'Other label test' atPoint: 2 @ 1.
+
 	self openInstance.
-	
-	self 
-		deny: presenter adapter widget submorphs first width 
+
+	self
+		deny: presenter adapter widget submorphs first width
 		equals: presenter adapter widget submorphs second width
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeRowHomogeneous [
 
-	layout 
+	layout
 		beRowHomogeneous;
-		add: 'Test' at: 1@1; 
-		add: (presenter newMorph morph: (Morph new extent: 40@40)) at: 1@2.
-		
+		add: 'Test' atPoint: 1 @ 1;
+		add: (presenter newMorph morph: (Morph new extent: 40 @ 40))
+		atPoint: 1 @ 2.
+
 	self openInstance.
-	
-	self 
-		assert: presenter adapter widget submorphs first height 
+
+	self
+		assert: presenter adapter widget submorphs first height
 		equals: presenter adapter widget submorphs second height
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testBeRowNotHomogeneous [
+
 	| testMorph |
-	
 	testMorph := Morph new
-		vResizing: #rigid;
-		extent: 40@40;
-		yourself.
-	
-	layout 
+		             vResizing: #rigid;
+		             extent: 40 @ 40;
+		             yourself.
+
+	layout
 		beRowNotHomogeneous;
-		add: 'Test' at: 1@1; 
-		add: (presenter newMorph morph: testMorph) at: 1@2.
-		
+		add: 'Test' atPoint: 1 @ 1;
+		add: (presenter newMorph morph: testMorph) atPoint: 1 @ 2.
+
 	self openInstance.
-	
-	self 
-		deny: presenter adapter widget submorphs first height 
+
+	self
+		deny: presenter adapter widget submorphs first height
 		equals: presenter adapter widget submorphs second height
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testColumnSpanColumnHomogeneous [
 
-	layout 
+	layout
 		beColumnHomogeneous;
-		add: 'Test' at: 1@1 span: 2@1; 
-		add: 'Other label test' at: 1@2; add: 'span column'at: 2@2.
-		
+		add: 'Test' atPoint: 1 @ 1 span: 2 @ 1;
+		add: 'Other label test' atPoint: 1 @ 2;
+		add: 'span column' at: 2 @ 2.
+
 	self openInstance.
-	
-	self 
-		assert: presenter adapter widget submorphs first width 
-		equals: (
-			(presenter adapter widget submorphs second width) 
-			+ (presenter adapter widget submorphs third width))
+
+	self
+		assert: presenter adapter widget submorphs first width
+		equals: presenter adapter widget submorphs second width
+			+ presenter adapter widget submorphs third width
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testColumnSpanColumnNotHomogeneous [
 
-	layout 
+	layout
 		beColumnNotHomogeneous;
-		add: 'Test' at: 1@1 span: 2@1; 
-		add: 'Other' at: 1@2; add: 'span column, larger'at: 2@2.
-		
+		add: 'Test' atPoint: 1 @ 1 span: 2 @ 1;
+		add: 'Other' atPoint: 1 @ 2;
+		add: 'span column, larger' at: 2 @ 2.
+
 	self openInstance.
-	
+
 	"the first column width is equal to the sum of two columns"
-	self 
-		assert: presenter adapter widget submorphs first width 
-		equals: (
-			(presenter adapter widget submorphs second width) 
-			+ (presenter adapter widget submorphs third width)).
+	self
+		assert: presenter adapter widget submorphs first width
+		equals: presenter adapter widget submorphs second width
+			+ presenter adapter widget submorphs third width.
 	"the first column still needs to be smaller than the first"
-	self 
-		assert: presenter adapter widget submorphs second width < (presenter adapter widget submorphs third width)
+	self assert: presenter adapter widget submorphs second width
+		< presenter adapter widget submorphs third width
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 
 	| element |
-	layout add: (element := SpButtonPresenter new) at: 1@1.
+	layout add: (element := SpButtonPresenter new) atPoint: 1 @ 1.
 	self openInstance.
-	
+
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
@@ -165,52 +168,56 @@ SpGridLayoutAdapterTest >> testRemoveElementAddedAfterOpenRemovesFromAdapter [
 SpGridLayoutAdapterTest >> testRemoveElementRemovesFromAdapter [
 
 	| element |
-	layout add: (element := SpButtonPresenter new) at: 1@1.
+	layout add: (element := SpButtonPresenter new) atPoint: 1 @ 1.
 	layout remove: element.
 	self assert: self adapter isEmpty
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowHomogeneous [
+
 	| testMorph |
-	
 	testMorph := Morph new
-		vResizing: #rigid;
-		extent: 40@40;
-		yourself.
-	
-	layout 
+		             vResizing: #rigid;
+		             extent: 40 @ 40;
+		             yourself.
+
+	layout
 		beRowHomogeneous;
-		add: 'Test 1' at: 1@1; add: (presenter newMorph morph: testMorph) at: 2@1 span: 1@2;
-		add: 'Test 2' at: 1@2.
-		
+		add: 'Test 1' atPoint: 1 @ 1;
+		add: (presenter newMorph morph: testMorph)
+		atPoint: 2 @ 1
+		span: 1 @ 2;
+		add: 'Test 2' at: 1 @ 2.
+
 	self openInstance.
-	self 
-		assert: presenter adapter widget submorphs second height 
-		equals: 
-			presenter adapter widget submorphs first height 
+	self
+		assert: presenter adapter widget submorphs second height
+		equals: presenter adapter widget submorphs first height
 			+ presenter adapter widget submorphs third height
 ]
 
 { #category : 'tests' }
 SpGridLayoutAdapterTest >> testRowSpanRowNotHomogeneous [
+
 	| testMorph |
-	
 	testMorph := Morph new
-		vResizing: #rigid;
-		extent: 40@40;
-		yourself.
-	
-	layout 
+		             vResizing: #rigid;
+		             extent: 40 @ 40;
+		             yourself.
+
+	layout
 		beRowNotHomogeneous;
-		add: 'Test 1' at: 1@1; add: (presenter newMorph morph: testMorph) at: 2@1 span: 1@2;
-		add: 'Test 2' at: 1@2.
-		
+		add: 'Test 1' atPoint: 1 @ 1;
+		add: (presenter newMorph morph: testMorph)
+		atPoint: 2 @ 1
+		span: 1 @ 2;
+		add: 'Test 2' at: 1 @ 2.
+
 	self openInstance.
-	
-	self 
-		assert: presenter adapter widget submorphs second height 
-		equals: 
-			presenter adapter widget submorphs first height 
+
+	self
+		assert: presenter adapter widget submorphs second height
+		equals: presenter adapter widget submorphs first height
 			+ presenter adapter widget submorphs third height
 ]

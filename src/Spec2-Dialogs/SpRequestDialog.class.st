@@ -144,7 +144,7 @@ SpRequestDialog >> initializePresenters [
 SpRequestDialog >> initializeWindow: aWindowPresenter [
 	
 	super initializeWindow: aWindowPresenter.
-	aWindowPresenter whenOpenedDo: [ textInput takeKeyboardFocus ]
+	aWindowPresenter whenOpenedDo: [ textInput takeKeyboardFocus; selectAll  ]
 ]
 
 { #category : 'api - showing' }

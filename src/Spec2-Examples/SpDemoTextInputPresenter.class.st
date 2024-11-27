@@ -24,8 +24,8 @@ SpDemoTextInputPresenter class >> example [
 SpDemoTextInputPresenter >> defaultLayout [
 
 	^ SpGridLayout new
-		  add: 'Normal:' at: 1 @ 1;
-		  add: fieldNormal at: 2 @ 1 span: 2 @ 1;
+		  add: 'Normal:' atPoint: 1 @ 1;
+		  add: fieldNormal atPoint: 2 @ 1 span: 2 @ 1;
 		  add: 'Disabled:' at: 1 @ 2;
 		  add: fieldDisabled at: 2 @ 2 span: 2 @ 1;
 		  add: 'Placeholder:' at: 1 @ 3;

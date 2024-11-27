@@ -77,6 +77,16 @@ SpNumberInputFieldPresenterTest >> testWhenNumberChangedDo [
 ]
 
 { #category : 'tests' }
+SpNumberInputFieldPresenterTest >> testWhenNumberChangedDo2Arguments [
+
+	presenter
+		number: 10;
+		whenNumberChangedDo: [ :newValue :oldValue |  self deny: newValue equals: oldValue ].
+	presenter number: 32.
+
+]
+
+{ #category : 'tests' }
 SpNumberInputFieldPresenterTest >> testWhenNumberTypeChangedDo [
 	| count result |
 	count := 0.
