@@ -37,7 +37,7 @@ SpColumnViewPresenter class >> example [
 SpColumnViewPresenter class >> exampleActivateOnDoubleClick [
 
 	^ self new
-		  application: (SpApplication new useBackend: #Gtk);
+		  application: SpApplication new;
 		  isActiveOnDoubleClick;
 		  addColumnTitle: 'Class'
 		  setup: [ :aPresenter | aPresenter newLabel ]
@@ -51,7 +51,7 @@ SpColumnViewPresenter class >> exampleActivateOnDoubleClick [
 SpColumnViewPresenter class >> exampleResizableColumns [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		beResizable;
 		items: Smalltalk allClasses;
 		addColumnTitle: 'Class' 
@@ -67,7 +67,7 @@ SpColumnViewPresenter class >> exampleResizableColumns [
 SpColumnViewPresenter class >> exampleWithIcons [
 	
 	^ self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		addColumnTitle: 'Class' 
 			setup: [ :aPresenter |
 				| presenter |
@@ -159,6 +159,7 @@ SpColumnViewPresenter >> initialize [
 	super initialize.
 	self initializeTSearchable.
 	self showColumnHeaders.
+	self beNotResizable.
 	columns := #()
 ]
 

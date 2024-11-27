@@ -48,7 +48,7 @@ SpMorphicColumnViewAdapter >> addModelTo: tableMorph [
 { #category : 'testing' }
 SpMorphicColumnViewAdapter >> isResizable [
 
-	^ true
+	^ self presenter isResizable
 ]
 
 { #category : 'private - factory' }
