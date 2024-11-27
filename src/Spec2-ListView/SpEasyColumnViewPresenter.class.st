@@ -11,7 +11,7 @@ SpEasyColumnViewPresenter class >> example [
 	"This example show the simples list view you can make: A list with a label"
 	
 	self new
-		application: (SpApplication new useBackend: #Gtk);
+		application: SpApplication new;
 		items: self environment allClasses;
 		addColumn: (SpStringTableColumn new 
 			title: 'Class';
@@ -41,6 +41,25 @@ SpEasyColumnViewPresenter class >> exampleActivateOnDoubleClick [
 			yourself);
 		activateOnDoubleClick;
 		whenActivatedDo: [ :selection| selection selectedItem crTrace ];
+		open
+]
+
+{ #category : 'examples' }
+SpEasyColumnViewPresenter class >> exampleWithColumnWidth [
+	"This example show the simples list view you can make: A list with a label"
+	
+	self new
+		application: SpApplication new;
+		items: self environment allClasses;
+		addColumn: (SpStringTableColumn new 
+			title: 'Class';
+			evaluated: [ :each | each name ];
+			yourself);
+		addColumn: (SpStringTableColumn new 
+			title: 'Lines of code';
+			evaluated: [ :each | each linesOfCode ];
+			width: 50;
+			yourself);
 		open
 ]
 
