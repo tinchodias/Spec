@@ -493,6 +493,7 @@ SpMorphicTreeTableAdapter >> transferFrom: aTransferMorph event: anEvent [
 	^ SpDragAndDropTransferToTree new
 		passenger: aTransferMorph passenger;
 		row: (rowAndColumn first ifNil: [ 0 ]);
+		shouldCopy: aTransferMorph shouldCopy;
 		column: (rowAndColumn second ifNil: [ 0 ]);
 		target: aTarget;
 		yourself
