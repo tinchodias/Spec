@@ -15,7 +15,9 @@ SpListPresenter class >> exampleDragAndDrop [
 
 	(list1 := self new)
 		items: #( 'abc' 'def' 'xyz' );
-		dragEnabled: true.
+		dragEnabled: true;
+		whenDragStartDo: [ :ann | 
+			ann transfer description: ('Passing "{1}" element' format: ann transfer passenger) ].
 		
 	(list2 := self new)
 		dropEnabled: true;

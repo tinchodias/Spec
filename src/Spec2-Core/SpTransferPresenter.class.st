@@ -5,6 +5,7 @@ Class {
 	#name : 'SpTransferPresenter',
 	#superclass : 'SpAbstractWidgetPresenter',
 	#instVars : [
+		'#description',
 		'#passenger => ObservableSlot',
 		'#source => ObservableSlot'
 	],
@@ -17,6 +18,18 @@ Class {
 SpTransferPresenter class >> adapterName [
 
 	^ #TransferAdapter
+]
+
+{ #category : 'accessing' }
+SpTransferPresenter >> description [
+
+	^ description
+]
+
+{ #category : 'accessing' }
+SpTransferPresenter >> description: aString [
+
+	description := aString
 ]
 
 { #category : 'accessing' }

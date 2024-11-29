@@ -658,10 +658,9 @@ SpAbstractMorphicAdapter >> takeKeyboardFocus [
 { #category : 'drag and drop' }
 SpAbstractMorphicAdapter >> transferFor: passenger from: source [
 
-	^ SpTransferPresenter new
-		transfer: passenger;
-		from: source;
-		yourself
+	^ self presenter 
+		dragTransferFor: passenger
+		from: source
 ]
 
 { #category : 'emulating' }
