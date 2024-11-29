@@ -274,6 +274,23 @@ SpAbstractWidgetPresenter >> dragEnabled: aBoolean [
 	dragEnabled := aBoolean
 ]
 
+{ #category : 'private - drag and drop' }
+SpAbstractWidgetPresenter >> dragTransferFor: passenger from: source [
+	"answer a transfer presenter ready to be dragged away from this presenter to 
+	 its destination. Allows user to modify elements of it by using the whenDragWillStartDo: 
+	 event and touching the transfer object."
+	| transfer |
+	
+	transfer := SpTransferPresenter new
+		transfer: passenger;
+		from: source;
+		yourself.
+		
+	self announce: (SpDragStartAnnouncement newTransfer: transfer). 
+		
+	^ transfer
+]
+
 { #category : 'drag and drop' }
 SpAbstractWidgetPresenter >> dropEnabled [
 	^ dropEnabled
@@ -399,6 +416,17 @@ SpAbstractWidgetPresenter >> whenBorderWidthChangedDo: aBlock [
 	"Set a block to be performed when the brder width changed"
 
 	self property: #borderWidth whenChangedDo: aBlock
+]
+
+{ #category : 'api - events' }
+SpAbstractWidgetPresenter >> whenDragStartDo: aBlock [
+	"Informs user a drag is taking place. 
+	 `aBlock` receives an SpDragStartAnnouncement as argument."
+
+	self announcer 
+		when: SpDragStartAnnouncement 
+		do: aBlock
+		for: aBlock receiver
 ]
 
 { #category : 'api - events' }

@@ -128,7 +128,7 @@ SpExampleBrowser >> listMenuActions [
 			action: [ self browseSelectedExample ] ];
 		addActionWith: [ :item | item
 			name: 'Run';
-			enabled: runButton isEnabled;
+			actionEnabled: [ runButton isEnabled ];
 			action: [ self runSelectedExample ] ];
 		yourself
 ]

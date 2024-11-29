@@ -12,6 +12,15 @@ Class {
 	#tag : 'Support'
 }
 
+{ #category : 'private' }
+SpTransferMorph >> initDraggedMorph [
+	draggedMorph ifNotNil: [^self].
+	draggedMorph := ((self valueOfProperty: #presenter) description ifNil: [ self passenger ]) asDraggableMorph.
+	self addMorphBack: draggedMorph.
+	self updateCopyIcon.
+	self changed; fullBounds
+]
+
 { #category : 'initialization' }
 SpTransferMorph >> initialize [
 
