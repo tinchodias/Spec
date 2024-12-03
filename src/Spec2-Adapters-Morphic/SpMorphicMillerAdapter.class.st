@@ -170,7 +170,7 @@ SpMorphicMillerAdapter >> recalculatePageHeights [
 
 { #category : 'private' }
 SpMorphicMillerAdapter >> recalculatePageWidths [
-	| newWidth widgets width |
+	| newWidth widgets width right |
 
 	widgets := self childrenWidgets.	
 	width := self widget width.
@@ -181,10 +181,12 @@ SpMorphicMillerAdapter >> recalculatePageWidths [
 			visiblePages := layout visiblePages min: widgets size.
 			(width / visiblePages) - (layout spacing / visiblePages) ].
 		
+	right := (widgets size * newWidth) floor.
 	widgets reverseWithIndexDo: [ :each :index |
-		each 
-			left: (index - 1) * newWidth;
-			width: newWidth ]
+		| left |
+		left := ((index - 1) * newWidth) floor.
+		each left: left; width: right - left.
+		right := left ]
 ]
 
 { #category : 'private' }
