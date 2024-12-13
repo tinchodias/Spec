@@ -32,7 +32,6 @@ SpDropDownPresenter class >> example [
 		items: self environment allClasses;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		display: [ :aClass | aClass name ];
 		open
 ]
 
@@ -72,7 +71,6 @@ SpDropDownPresenter class >> exampleWithSelectedItem [
 		items: self environment allClassesAndTraits;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		display: [ :aClass | aClass name ];
 		selectItem: Object;
 		whenSelectionChangedDo: [ :aSelection | aSelection selectedItem crTrace ];
 		open
