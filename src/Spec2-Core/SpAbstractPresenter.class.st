@@ -317,6 +317,7 @@ SpAbstractPresenter >> initializeDialogWindow: aDialogWindowPresenter [
 			presenter close ];
 		addDefaultButton: 'Ok' do: [ :presenter | 
 			presenter triggerOkAction.
+			presenter beOk.
 			presenter close ]
 ]
 
