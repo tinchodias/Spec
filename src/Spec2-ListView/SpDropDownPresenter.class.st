@@ -48,7 +48,7 @@ SpDropDownPresenter class >> exampleWithIcons [
 			| presenter |
 			(presenter := aPresenter newPresenter)
 				layout: (SpBoxLayout newHorizontal
-					"spacing: 5;"
+					spacing: 5;
 					add: presenter newImage expand: false;
 					add: presenter newLabel;
 					yourself);
