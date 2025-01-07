@@ -88,6 +88,58 @@ SpColumnViewPresenter class >> exampleWithIcons [
 		open
 ]
 
+{ #category : 'examples' }
+SpColumnViewPresenter class >> exampleWithIconsAndButtons [
+	
+	^ SpColumnViewPresenter new
+		addColumn: (SpColumnViewColumn new 
+			title: 'Class'; 
+			setup: [ :aPresenter |
+				| presenter |
+				(presenter := aPresenter newPresenter)
+					layout: (SpBoxLayout newHorizontal
+						spacing: 5;
+						add: presenter newImage expand: false;
+						add: presenter newLabel;
+						yourself);
+					yourself ];
+			bind: [ :aPresenter :aClass | 
+				| icon image label |
+				icon := Smalltalk ui icons iconNamed: aClass systemIconName.
+				image := aPresenter layout children first.
+				image image: icon.
+				label := aPresenter layout children second.
+				label label: aClass name ];
+			yourself);
+		addColumn: (SpColumnViewColumn new
+			title: 'Actions';
+			width: 60;
+			setup: [ :aPresenter | | presenter |
+				(presenter := aPresenter newPresenter)
+					layout: (SpBoxLayout newHorizontal
+						hAlignCenter;
+						add: (presenter newButton 
+							addStyle: 'small'; 
+							yourself);
+						add: (presenter newButton 
+							addStyle: 'small'; 
+							icon: (presenter iconNamed: #smallDelete);
+							yourself);
+						yourself);
+					yourself ];
+			bind: [ :aPresenter :aClass | | button1 button2 |
+				button1 := aPresenter layout children first.
+				button1 
+					icon: (aPresenter iconNamed: aClass systemIconName);
+					action: [ Object inform: aClass name  ].
+				button2 := aPresenter layout children second.
+				button2 
+					action: [ Object inform: 'Will remove ', aClass name ] ];
+			yourself);
+		items: Smalltalk allClassesAndTraits;
+		open
+]
+
 { #category : 'api' }
 SpColumnViewPresenter >> addColumn: aColumn [
 	"Add a column to the table. A column should be an instance of `SpTableColumn`"

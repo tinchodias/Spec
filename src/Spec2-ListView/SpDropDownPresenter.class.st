@@ -32,7 +32,6 @@ SpDropDownPresenter class >> example [
 		items: self environment allClasses;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		display: [ :aClass | aClass name ];
 		open
 ]
 
@@ -49,7 +48,7 @@ SpDropDownPresenter class >> exampleWithIcons [
 			| presenter |
 			(presenter := aPresenter newPresenter)
 				layout: (SpBoxLayout newHorizontal
-					"spacing: 5;"
+					spacing: 5;
 					add: presenter newImage expand: false;
 					add: presenter newLabel;
 					yourself);
@@ -72,7 +71,6 @@ SpDropDownPresenter class >> exampleWithSelectedItem [
 		items: self environment allClassesAndTraits;
 		setup: [ :aPresenter | aPresenter newLabel ];
 		bind: [ :aPresenter :aClass | aPresenter label: aClass name ];
-		display: [ :aClass | aClass name ];
 		selectItem: Object;
 		whenSelectionChangedDo: [ :aSelection | aSelection selectedItem crTrace ];
 		open
