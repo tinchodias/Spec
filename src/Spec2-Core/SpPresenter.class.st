@@ -100,6 +100,10 @@ Class {
 		'#extent => ObservableSlot',
 		'#styles'
 	],
+	#classInstVars : [
+		'#preferredExtent',
+		'#customExtent'
+	],
 	#category : 'Spec2-Core-Base',
 	#package : 'Spec2-Core',
 	#tag : 'Base'
@@ -109,6 +113,12 @@ Class {
 SpPresenter class >> currentApplication [ 
 
 	^ SpApplication defaultApplication
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> defaultPreferredExtent [
+
+	^ 700@500
 ]
 
 { #category : 'labeled-presenters' }
@@ -182,6 +192,18 @@ SpPresenter class >> owner: anOwningPresenter on: aDomainObject [
 		setModelBeforeInitialization: aDomainObject;
 		initialize;
 		yourself
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> preferredExtent [
+	
+	^ customExtent ifNil: [ customExtent := self defaultPreferredExtent ]
+]
+
+{ #category : 'accessing' }
+SpPresenter class >> preferredExtent: aPoint [
+	
+	customExtent := aPoint
 ]
 
 { #category : 'specs' }
@@ -643,8 +665,9 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 
 	aWindowPresenter
 		title: self title;
-		initialExtent: self initialExtent;
-		windowIcon: self windowIcon
+		initialExtent: self class preferredExtent;
+		windowIcon: self windowIcon;
+		whenResizingDo: [ :ann | self preferredExtent: ann newSize ].
 ]
 
 { #category : 'inspector - extensions' }
@@ -775,6 +798,22 @@ SpPresenter >> on: anAnnouncement send: aSelector to: aTarget [
 		when: anAnnouncement 
 		send: aSelector 
 		to: aTarget
+]
+
+{ #category : 'accessing' }
+SpPresenter >> preferredExtent [
+	"The preferred extent logic manages the fact that if the user resizes a window, the preferred extent reflects this new size. Notice that this preferred extent is on a per presenter (i.e. class level) shared between all the instances of the class."
+	
+	^ self class preferredExtent 
+]
+
+{ #category : 'accessing' }
+SpPresenter >> preferredExtent: aSize [
+
+	(self window isMaximized 
+		or: [ self window isMinimized ])
+		ifTrue: [ ^ self ].
+	self class preferredExtent: aSize
 ]
 
 { #category : 'accessing' }
