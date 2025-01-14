@@ -110,18 +110,6 @@ SpSelectDialog >> displayIcon: aBlock [
 	list displayIcon: aBlock
 ]
 
-{ #category : 'api' }
-SpSelectDialog >> extent [
-
-	^ initialExtent ifNil: [ self class defaultExtent ]
-]
-
-{ #category : 'api' }
-SpSelectDialog >> extent: aPoint [
-
-	initialExtent := aPoint
-]
-
 { #category : 'initialization' }
 SpSelectDialog >> initializePresenters [
 

@@ -155,12 +155,6 @@ SpCommand >> isEnabled [
 	^ self canBeExecuted
 ]
 
-{ #category : 'testing' }
-SpCommand >> isVisible [
-
-	^ true
-]
-
 { #category : 'accessing' }
 SpCommand >> presenter [
 	^ presenter
