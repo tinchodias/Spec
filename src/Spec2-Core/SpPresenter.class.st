@@ -101,7 +101,6 @@ Class {
 		'#styles'
 	],
 	#classInstVars : [
-		'#preferredExtent',
 		'#customExtent'
 	],
 	#category : 'Spec2-Core-Base',
