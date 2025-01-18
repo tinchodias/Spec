@@ -79,6 +79,20 @@ SpRequestDialog class >> exampleMultiLineLabel [
 		openDialog
 ]
 
+{ #category : 'examples' }
+SpRequestDialog class >> examplePassword [
+
+	self new
+		bePassword;
+		title: 'Secret request example';
+		label: 'The meaning of life?';
+		text: 'I am tempted to say 42...';
+		acceptLabel: 'I know!';
+		cancelLabel: 'Cancel';
+		onAccept: [ :dialog | dialog presenter inform: dialog presenter text ];
+		openDialog
+]
+
 { #category : 'private' }
 SpRequestDialog >> accept [
 
