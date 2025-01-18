@@ -18,7 +18,8 @@ Class {
 		'owner',
 		'adapter',
 		'needRebuild',
-		'eventHandler'
+		'eventHandler',
+		'properties'
 	],
 	#category : 'Spec2-Core-Base',
 	#package : 'Spec2-Core',
@@ -303,7 +304,9 @@ SpAbstractPresenter >> initialize [
 
 	self class initializeSlots: self.
 	super initialize.
-	needRebuild := true
+	needRebuild := true.
+	"in the future we could use a trait TProperties"
+	properties := SmallDictionary new. 
 ]
 
 { #category : 'initialization' }
@@ -458,10 +461,77 @@ SpAbstractPresenter >> owner: aPresenter [
 	owner := aPresenter
 ]
 
+{ #category : 'properties' }
+SpAbstractPresenter >> properties [
+
+	^ properties
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey [
+
+	^ self properties at: aKey
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey ifAbsent: aBlock [
+	"Answer the property value associated with aKey or, if aKey isn't found, answer the result of evaluating aBlock."
+
+	^ properties at: aKey ifAbsent: aBlock
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey ifAbsentPut: aBlock [
+
+	^ self properties 
+		at: aKey
+		ifAbsentPut: aBlock
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey ifPresent: aBlock [
+
+	^ self properties
+		at: aKey 
+		ifPresent: aBlock
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey ifPresent: aBlock ifAbsent: absentBlock [
+
+	^ self properties
+		at: aKey 
+		ifPresent: aBlock
+		ifAbsent: absentBlock
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey ifPresent: aBlock ifAbsentPut: absentBlock [
+
+	^ self properties
+		at: aKey 
+		ifPresent: aBlock
+		ifAbsentPut: absentBlock
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> propertyAt: aKey put: aValue [
+
+	^ self properties 
+		at: aKey
+		put: aValue
+]
+
 { #category : 'private - utilities' }
 SpAbstractPresenter >> rawValueHolderNamed: aSymbol [
 
 	^ (self class slotNamed: aSymbol) rawRead: self.
+]
+
+{ #category : 'properties' }
+SpAbstractPresenter >> removeProperty: aName [
+
+	^ self properties removeKey: aName ifAbsent: [ ]
 ]
 
 { #category : 'private - building' }
