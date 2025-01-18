@@ -86,6 +86,18 @@ SpRequestDialog >> accept [
 	super accept
 ]
 
+{ #category : 'api' }
+SpRequestDialog >> bePassword [
+
+	textInput bePassword
+]
+
+{ #category : 'api' }
+SpRequestDialog >> beText [
+
+	textInput beText
+]
+
 { #category : 'initialization' }
 SpRequestDialog >> connectPresenters [ 
 
@@ -145,6 +157,12 @@ SpRequestDialog >> initializeWindow: aWindowPresenter [
 	
 	super initializeWindow: aWindowPresenter.
 	aWindowPresenter whenOpenedDo: [ textInput takeKeyboardFocus; selectAll  ]
+]
+
+{ #category : 'testing' }
+SpRequestDialog >> isPassword [
+	
+	^ textInput isPassword
 ]
 
 { #category : 'api - showing' }
