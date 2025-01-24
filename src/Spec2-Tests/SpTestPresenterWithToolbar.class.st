@@ -22,6 +22,12 @@ SpTestPresenterWithToolbar class >> defaultLayout [
 		yourself
 ]
 
+{ #category : 'layout' }
+SpTestPresenterWithToolbar class >> defaultPreferredExtent [ 
+
+	^ 700 @ 500
+]
+
 { #category : 'initialization' }
 SpTestPresenterWithToolbar >> initializePresenters [
 	button := self newButton
@@ -38,7 +44,11 @@ SpTestPresenterWithToolbar >> initializeWindow: aWindowPresenter [
 			yourself);
 		yourself.
 	aWindowPresenter
-		title: self class name;
-		initialExtent: 700 @ 500;
 		toolbar: toolbar
+]
+
+{ #category : 'initialization' }
+SpTestPresenterWithToolbar >> windowTitle [
+
+	^  self class name
 ]
