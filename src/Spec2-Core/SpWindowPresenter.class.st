@@ -53,8 +53,14 @@ SpWindowPresenter class >> application: anApplication [
 		yourself
 ]
 
-{ #category : 'accessing' }
+{ #category : 'accessing - deprecated' }
 SpWindowPresenter class >> defaultTitle [
+	"Deprecated"
+	^ self defaultWindowTitle
+]
+
+{ #category : 'accessing' }
+SpWindowPresenter class >> defaultWindowTitle [
 
 	^ 'Untitled window'
 ]
@@ -302,7 +308,7 @@ SpWindowPresenter >> initialize [
 
 	super initialize.
 
-	titleHolder := self class defaultTitle.
+	titleHolder := self class defaultWindowTitle.
 	isClosed := true.
 	resizable := true.
 	centered := false.
