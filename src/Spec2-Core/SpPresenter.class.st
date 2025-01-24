@@ -1084,7 +1084,7 @@ SpPresenter >> whenWindowChanged: aBlock [
 		for: self
 ]
 
-{ #category : 'TOREMOVE' }
+{ #category : 'accessing' }
 SpPresenter >> windowIcon [
 	"Returns the icon of the window.
 	In general this is the responsibility of the application to manage its icons.
@@ -1098,7 +1098,7 @@ SpPresenter >> windowIcon [
 	^ windowIcon
 ]
 
-{ #category : 'TOREMOVE' }
+{ #category : 'accessing' }
 SpPresenter >> windowTitle [
 	"You can specialize this method to provide a nice window title.
 	
