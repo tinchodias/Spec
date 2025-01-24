@@ -970,13 +970,7 @@ SpPresenter >> takeKeyboardFocus [
 
 { #category : 'TOREMOVE' }
 SpPresenter >> title [
-	"DO NOT USE
-	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
-	
-	This method cannot be deprecated because during a transition phase we keep this mechanism. "
+	"Deprecated use the windowTitle method instead."
 
 	^ titleHolder
 ]
@@ -1092,13 +1086,28 @@ SpPresenter >> whenWindowChanged: aBlock [
 
 { #category : 'TOREMOVE' }
 SpPresenter >> windowIcon [
-	"DO NOT USE
-	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	"Returns the icon of the window.
+	In general this is the responsibility of the application to manage its icons.
+	You can specialize this method following for example this pattern.
+		windowIcon 
+		    ^ self iconNamed: #testRunner
 	
-	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+	
+	"
 
 	^ windowIcon
+]
+
+{ #category : 'TOREMOVE' }
+SpPresenter >> windowTitle [
+	"You can specialize this method to provide a nice window title.
+	
+	A possible approach if your presenter has a model is to delegate to the model as follows: 
+
+		windowTitle
+
+			^ self model windowTitle
+	"
+
+	^ titleHolder
 ]
