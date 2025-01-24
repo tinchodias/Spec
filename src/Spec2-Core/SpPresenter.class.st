@@ -663,7 +663,7 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 	In the next Spec version the content of this method will be removed and it will do nothing by default because the goal is to remove the management of all of those informations from Composable to put them in WindowPresenter."
 
 	aWindowPresenter
-		title: self title;
+		title: self windowTitle;
 		initialExtent: self class preferredExtent;
 		windowIcon: self windowIcon;
 		whenResizingDo: [ :ann | self preferredExtent: ann newSize ].
