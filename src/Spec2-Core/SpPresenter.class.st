@@ -968,7 +968,7 @@ SpPresenter >> takeKeyboardFocus [
 		anAdapter takeKeyboardFocus ]
 ]
 
-{ #category : 'TOREMOVE' }
+{ #category : 'accessing - deprecated' }
 SpPresenter >> title [
 	"Deprecated use the windowTitle method instead."
 
