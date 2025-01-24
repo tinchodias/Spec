@@ -26,6 +26,12 @@ Class {
 	#tag : 'Demo-Forms'
 }
 
+{ #category : 'accessing' }
+SpDemoStandaloneFormPresenter class >> defaultPreferredExtent [
+
+	^ 400@400
+]
+
 { #category : 'instance creation' }
 SpDemoStandaloneFormPresenter class >> open [
 	<example>
@@ -168,13 +174,6 @@ SpDemoStandaloneFormPresenter >> initializePresenters [
 
 	submitButton := self newButton label: 'Submit'.
 	restoreButton := self newButton label: 'Restore'
-]
-
-{ #category : 'initialization' }
-SpDemoStandaloneFormPresenter >> initializeWindow: aWindowPresenter [
-
-	aWindowPresenter
-		initialExtent: 400@400
 ]
 
 { #category : 'accessing' }
