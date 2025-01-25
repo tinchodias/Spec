@@ -37,7 +37,7 @@ SpMorphicWindowAdapter >> addPresenterIn: aWindow withSpecLayout: aSpec [
 	self presenter initialPosition ifNotNil: [ :position | 
 		aWindow position: position ].
 	self presenter initialExtent ifNotNil: [ :extent | 
-		aWindow extent: extent ].
+		aWindow extent: extent scaledByDisplayScaleFactor ].
 	self presenter hasDecorations ifFalse: [ aWindow removeLabelArea ].
 	self presenter whenDecorationsChangedDo: [ :aBoolean | 
 		aBoolean

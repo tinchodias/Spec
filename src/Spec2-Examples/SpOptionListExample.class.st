@@ -29,9 +29,13 @@ SpOptionListExample >> allOptions [
 ]
 
 { #category : 'initialization' }
-SpOptionListExample >> initializeWindow: aWindowPresenter [
+SpOptionListExample >> defaultPreferredExtent [
 
-	aWindowPresenter
-		title: 'Spec Option List demos';
-		initialExtent: 800@500
+	^ 800@500
+]
+
+{ #category : 'initialization' }
+SpOptionListExample >> windowTitle [
+
+	^ 'Spec Option List demos'
 ]
