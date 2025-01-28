@@ -1109,5 +1109,5 @@ SpPresenter >> windowTitle [
 			^ self model windowTitle
 	"
 
-	^ titleHolder
+	^ titleHolder ifNil: [ titleHolder := 'Unnamed Window' ]
 ]
