@@ -25,7 +25,7 @@ SpTestPresenterWithToolbar class >> defaultLayout [
 { #category : 'layout' }
 SpTestPresenterWithToolbar class >> defaultPreferredExtent [ 
 
-	^ 700 @ 500
+	^ 700 @ 550
 ]
 
 { #category : 'initialization' }

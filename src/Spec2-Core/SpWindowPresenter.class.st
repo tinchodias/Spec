@@ -584,11 +584,6 @@ SpWindowPresenter >> taskbarIcon [
 ]
 
 { #category : 'private' }
-SpWindowPresenter >> title [
-	^ titleHolder
-]
-
-{ #category : 'private' }
 SpWindowPresenter >> title: aString [
 	titleHolder := aString
 ]
@@ -748,11 +743,6 @@ SpWindowPresenter >> windowClosed [
 	
 	isClosed := true.
 	self application windowClosed: self
-]
-
-{ #category : 'private' }
-SpWindowPresenter >> windowIcon [
-	^ windowIcon
 ]
 
 { #category : 'private' }
