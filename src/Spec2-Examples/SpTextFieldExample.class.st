@@ -20,12 +20,6 @@ SpTextFieldExample class >> example [
 	^ self new open
 ]
 
-{ #category : 'specs' }
-SpTextFieldExample class >> title [
-
-	^ 'Text Field Example'
-]
-
 { #category : 'initialization' }
 SpTextFieldExample >> connectPresenters [
 	
@@ -71,4 +65,10 @@ SpTextFieldExample >> methodBrowser [
 SpTextFieldExample >> textField [
 
 	^ textField
+]
+
+{ #category : 'accessing' }
+SpTextFieldExample >> windowTitle [ 
+
+	^ 'Text Field Example'
 ]

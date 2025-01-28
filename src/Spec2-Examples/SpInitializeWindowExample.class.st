@@ -149,7 +149,7 @@ SpInitializeWindowExample >> text: aPresenter [
 ]
 
 { #category : 'api' }
-SpInitializeWindowExample >> title [ 
+SpInitializeWindowExample >> windowTitle [ 
 
 	^ 'Example of using #prepareWindow:'
 ]

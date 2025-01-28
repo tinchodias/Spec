@@ -645,7 +645,7 @@ SpPresenter >> initializePrivateHooks [
 SpPresenter >> initializePrivateValueHolders [
 
 	askOkToClose := false.
-	titleHolder := self class title
+	titleHolder := self windowTitle
 ]
 
 { #category : 'initialization - deprecated' }

@@ -10,6 +10,12 @@ Class {
 	#tag : 'Standalone'
 }
 
+{ #category : 'initialization' }
+SpOptionListExample class >> defaultPreferredExtent [
+
+	^ 800@500
+]
+
 { #category : 'examples' }
 SpOptionListExample class >> example [
 
@@ -26,12 +32,6 @@ SpOptionListExample >> allOptions [
 
 	^ { SpProgressBarDemo . SpOptionPresenterExample . SpDemoFormPresenter }
 		collect: [ :class | class new ]
-]
-
-{ #category : 'initialization' }
-SpOptionListExample >> defaultPreferredExtent [
-
-	^ 800@500
 ]
 
 { #category : 'initialization' }
