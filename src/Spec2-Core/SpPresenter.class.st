@@ -420,7 +420,7 @@ SpPresenter >> cancelled [
 { #category : 'TOREMOVE' }
 SpPresenter >> centered [
 
-	self withWindowDo: #centered
+	self withWindowDo: [ :each | each centered ]
 ]
 
 { #category : 'simple dialog helpers' }
