@@ -270,7 +270,7 @@ SpDemo >> subMenu [
 ]
 
 { #category : 'api' }
-SpDemo >> title [
+SpDemo >> windowTitle [
 	
 	^ 'Spec UI Framework Demo'.
 ]

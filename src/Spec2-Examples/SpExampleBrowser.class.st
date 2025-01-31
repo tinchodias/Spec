@@ -16,6 +16,12 @@ Class {
 	#tag : 'ExampleBrowser'
 }
 
+{ #category : 'accessing' }
+SpExampleBrowser class >> defaultPreferredExtent [
+
+	^ 800@600
+]
+
 { #category : 'user interface' }
 SpExampleBrowser class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
@@ -112,14 +118,6 @@ SpExampleBrowser >> initializePresenters [
 ]
 
 { #category : 'initialization' }
-SpExampleBrowser >> initializeWindow: aWindow [
-
-	aWindow
-		title: 'Spec Example Browser';
-		initialExtent: 800@600
-]
-
-{ #category : 'initialization' }
 SpExampleBrowser >> listMenuActions [
 
 	^ SpActionGroup new
@@ -175,4 +173,9 @@ SpExampleBrowser >> updatePresenter [
 
 	list items: self allPresentersWithExamples.
 	runButton enabled: false
+]
+
+{ #category : 'initialization' }
+SpExampleBrowser >> windowTitle [
+	^  'Spec Example Browser'
 ]

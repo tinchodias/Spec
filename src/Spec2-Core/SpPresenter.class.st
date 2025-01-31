@@ -420,7 +420,7 @@ SpPresenter >> cancelled [
 { #category : 'TOREMOVE' }
 SpPresenter >> centered [
 
-	self withWindowDo: #centered
+	self withWindowDo: [ :each | each centered ]
 ]
 
 { #category : 'simple dialog helpers' }
@@ -645,7 +645,7 @@ SpPresenter >> initializePrivateHooks [
 SpPresenter >> initializePrivateValueHolders [
 
 	askOkToClose := false.
-	titleHolder := self class title
+	titleHolder := self windowTitle
 ]
 
 { #category : 'initialization - deprecated' }
@@ -663,7 +663,7 @@ SpPresenter >> initializeWindow: aWindowPresenter [
 	In the next Spec version the content of this method will be removed and it will do nothing by default because the goal is to remove the management of all of those informations from Composable to put them in WindowPresenter."
 
 	aWindowPresenter
-		title: self title;
+		title: self windowTitle;
 		initialExtent: self class preferredExtent;
 		windowIcon: self windowIcon;
 		whenResizingDo: [ :ann | self preferredExtent: ann newSize ].
@@ -968,15 +968,9 @@ SpPresenter >> takeKeyboardFocus [
 		anAdapter takeKeyboardFocus ]
 ]
 
-{ #category : 'TOREMOVE' }
+{ #category : 'accessing - deprecated' }
 SpPresenter >> title [
-	"DO NOT USE
-	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
-	
-	This method cannot be deprecated because during a transition phase we keep this mechanism. "
+	"Deprecated use the windowTitle method instead."
 
 	^ titleHolder
 ]
@@ -1090,15 +1084,30 @@ SpPresenter >> whenWindowChanged: aBlock [
 		for: self
 ]
 
-{ #category : 'TOREMOVE' }
+{ #category : 'accessing' }
 SpPresenter >> windowIcon [
-	"DO NOT USE
-	With Spec 2, SpPresenter was refactored to move all window management to WindowPresenter.
-	From now on, if you want to interact with a window you need to:
-	- Implement #initializeWindow: method (#initializeDialog: for dialogs) to manage window elements before the presenter is opened
-	- Use the method #window or #withWindowDo: to interact with windows after it has been opened.
+	"Returns the icon of the window.
+	In general this is the responsibility of the application to manage its icons.
+	You can specialize this method following for example this pattern.
+		windowIcon 
+		    ^ self iconNamed: #testRunner
 	
-	This method cannot be deprecated because during a transition phase we keep this mecanism. "
+	
+	"
 
 	^ windowIcon
+]
+
+{ #category : 'accessing' }
+SpPresenter >> windowTitle [
+	"You can specialize this method to provide a nice window title.
+	
+	A possible approach if your presenter has a model is to delegate to the model as follows: 
+
+		windowTitle
+
+			^ self model windowTitle
+	"
+
+	^ titleHolder ifNil: [ titleHolder := 'Unnamed Window' ]
 ]

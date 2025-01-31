@@ -329,8 +329,6 @@ SpAbstractPresenter >> initializeWindow: aWindowPresenter [
 	"Override this to set window values before opening. 
 	 You may want to add a menu, a toolbar or a statusbar"
 
-	self flag: #TODO. "Does presenters needs to understand this? (they do if we 
-	want to do ButtonPresenter new openWithSpec)."
 ]
 
 { #category : 'testing' }
